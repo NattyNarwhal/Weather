@@ -11,8 +11,6 @@ namespace Weather
 {
     public partial class SettingsForm : Form
     {
-        string old = "";
-
         public string WeatherLocation
         {
             get { return cityBox.Text; }
