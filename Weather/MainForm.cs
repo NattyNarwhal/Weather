@@ -84,7 +84,7 @@ namespace Weather
                 {
                     var lvi = new ListViewItem();
                     lvi.Group = lvg;
-                    if (DateTime.UtcNow > i.From && DateTime.UtcNow < i.To)
+                    if (i.FitsInPeriod(DateTime.UtcNow))
                         lvi.Font = new Font(lvi.Font, FontStyle.Bold);
                     lvi.Text = string.Format("{0} - {1}",
                         i.From.ToShortTimeString(), i.To.ToShortTimeString());

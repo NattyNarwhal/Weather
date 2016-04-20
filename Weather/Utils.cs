@@ -18,5 +18,10 @@ namespace Weather
             return string.Format("{0} m/s {1}",
                 t.WindSpeed.MetersPerSecond.ToString(), t.WindDirection.Code);
         }
+
+        public static bool FitsInPeriod(this TabularTime t, DateTime time)
+        {
+            return time > t.From && time < t.To;
+        }
     }
 }
