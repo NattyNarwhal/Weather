@@ -1,0 +1,1 @@
+This is an incomplete weather app, mostly to learn WPF. There are some useful things though - WeatherData, for instance can be used to serialize/deserialize yr.no XML weather feeds. Not sure if I'll finish this or rewrite it in Windows Forms.
