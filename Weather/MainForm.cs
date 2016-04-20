@@ -29,16 +29,28 @@ namespace Weather
                 {
                     data = (WeatherData)xs.Deserialize(fs);
                 }
-
                 SyncState();
             }
             catch (InvalidOperationException)
             {
-                // XML error
+                FlashError("An error occured parsing the weather data.");
             }
             catch (Exception)
             {
+                FlashError("An unknown error occured trying to get the weather data.");
+            }
+        }
 
+        public void FlashError(string message)
+        {
+            if (notifyIcon.Icon != null)
+            {
+                notifyIcon.ShowBalloonTip(10000, "An error occured with fetching the weather",
+                    message, ToolTipIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show(this, message, "Weather", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

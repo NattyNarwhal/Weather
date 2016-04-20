@@ -32,21 +32,16 @@
             this.refreshButton = new System.Windows.Forms.Button();
             this.forecastBox = new System.Windows.Forms.ListView();
             this.periodCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.conditionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tempCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.precipCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.windCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pressureCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.conditionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sunLabel = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lastUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.nextUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.linksButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linksMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,9 +49,14 @@
             this.hourlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.longTermToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
-            this.notifyIconMenu.SuspendLayout();
             this.linksMenu.SuspendLayout();
+            this.notifyIconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // refreshButton
@@ -96,6 +96,11 @@
             this.periodCol.Text = "Period";
             this.periodCol.Width = 140;
             // 
+            // conditionCol
+            // 
+            this.conditionCol.Text = "Conditions";
+            this.conditionCol.Width = 80;
+            // 
             // tempCol
             // 
             this.tempCol.Text = "Temp.";
@@ -115,11 +120,6 @@
             // 
             this.pressureCol.Text = "Pressure";
             this.pressureCol.Width = 70;
-            // 
-            // conditionCol
-            // 
-            this.conditionCol.Text = "Conditions";
-            this.conditionCol.Width = 80;
             // 
             // sunLabel
             // 
@@ -167,6 +167,60 @@
             this.linksButton.Size = new System.Drawing.Size(47, 20);
             this.linksButton.Text = "Links";
             // 
+            // linksMenu
+            // 
+            this.linksMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.creditsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.overviewToolStripMenuItem,
+            this.hourlyToolStripMenuItem,
+            this.longTermToolStripMenuItem,
+            this.radarToolStripMenuItem});
+            this.linksMenu.Name = "linksMenu";
+            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
+            this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.linksMenu.Size = new System.Drawing.Size(132, 120);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.creditsToolStripMenuItem.Text = "&Credits";
+            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 6);
+            // 
+            // overviewToolStripMenuItem
+            // 
+            this.overviewToolStripMenuItem.Name = "overviewToolStripMenuItem";
+            this.overviewToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.overviewToolStripMenuItem.Text = "&Overview";
+            this.overviewToolStripMenuItem.Click += new System.EventHandler(this.overviewToolStripMenuItem_Click);
+            // 
+            // hourlyToolStripMenuItem
+            // 
+            this.hourlyToolStripMenuItem.Name = "hourlyToolStripMenuItem";
+            this.hourlyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.hourlyToolStripMenuItem.Text = "&Hourly";
+            this.hourlyToolStripMenuItem.Click += new System.EventHandler(this.hourlyToolStripMenuItem_Click);
+            // 
+            // longTermToolStripMenuItem
+            // 
+            this.longTermToolStripMenuItem.Name = "longTermToolStripMenuItem";
+            this.longTermToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.longTermToolStripMenuItem.Text = "&Long Term";
+            this.longTermToolStripMenuItem.Click += new System.EventHandler(this.longTermToolStripMenuItem_Click);
+            // 
+            // radarToolStripMenuItem
+            // 
+            this.radarToolStripMenuItem.Name = "radarToolStripMenuItem";
+            this.radarToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.radarToolStripMenuItem.Text = "&Radar";
+            this.radarToolStripMenuItem.Click += new System.EventHandler(this.radarToolStripMenuItem_Click);
+            // 
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
@@ -202,59 +256,6 @@
             this.linksToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.linksToolStripMenuItem.Text = "&Links";
             // 
-            // linksMenu
-            // 
-            this.linksMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.creditsToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.overviewToolStripMenuItem,
-            this.hourlyToolStripMenuItem,
-            this.longTermToolStripMenuItem,
-            this.radarToolStripMenuItem});
-            this.linksMenu.Name = "linksMenu";
-            this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.linksMenu.Size = new System.Drawing.Size(153, 142);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.creditsToolStripMenuItem.Text = "&Credits";
-            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // overviewToolStripMenuItem
-            // 
-            this.overviewToolStripMenuItem.Name = "overviewToolStripMenuItem";
-            this.overviewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.overviewToolStripMenuItem.Text = "&Overview";
-            this.overviewToolStripMenuItem.Click += new System.EventHandler(this.overviewToolStripMenuItem_Click);
-            // 
-            // hourlyToolStripMenuItem
-            // 
-            this.hourlyToolStripMenuItem.Name = "hourlyToolStripMenuItem";
-            this.hourlyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.hourlyToolStripMenuItem.Text = "&Hourly";
-            this.hourlyToolStripMenuItem.Click += new System.EventHandler(this.hourlyToolStripMenuItem_Click);
-            // 
-            // longTermToolStripMenuItem
-            // 
-            this.longTermToolStripMenuItem.Name = "longTermToolStripMenuItem";
-            this.longTermToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.longTermToolStripMenuItem.Text = "&Long Term";
-            this.longTermToolStripMenuItem.Click += new System.EventHandler(this.longTermToolStripMenuItem_Click);
-            // 
-            // radarToolStripMenuItem
-            // 
-            this.radarToolStripMenuItem.Name = "radarToolStripMenuItem";
-            this.radarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.radarToolStripMenuItem.Text = "&Radar";
-            this.radarToolStripMenuItem.Click += new System.EventHandler(this.radarToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,11 +266,11 @@
             this.Controls.Add(this.sunLabel);
             this.Controls.Add(this.refreshButton);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Weather";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.notifyIconMenu.ResumeLayout(false);
             this.linksMenu.ResumeLayout(false);
+            this.notifyIconMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
