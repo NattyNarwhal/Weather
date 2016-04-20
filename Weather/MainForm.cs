@@ -120,7 +120,7 @@ namespace Weather
                     Icon i = Icon.FromHandle(b.GetHicon());
                     notifyIcon.Icon = i;
 
-                    if (TaskbarManager.IsPlatformSupported)
+                    if (TaskbarManager.IsPlatformSupported && Visible)
                         TaskbarManager.Instance.SetOverlayIcon(i, t.Temperature.ToString());
                 }
                 notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
