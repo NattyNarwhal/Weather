@@ -16,6 +16,7 @@ namespace Weather
         public string weatherLocation;
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
+        private Icon icon; // used for both notify + taskbar overlay
 
         public MainForm()
         {
@@ -98,9 +99,7 @@ namespace Weather
                     forecastBox.Items.Add(lvi);
                 }
             }
-
-            // current conditions
-            var t = data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault();
+            TabularTime t = data.GetCurrentForecast();
             if (t != null)
             {
                 //make icons
@@ -117,11 +116,8 @@ namespace Weather
                             new Font(FontFamily.GenericMonospace, 8, FontStyle.Regular),
                             pos ? Brushes.Black : Brushes.White, new Point(-1, 0));
                     }
-                    Icon i = Icon.FromHandle(b.GetHicon());
-                    notifyIcon.Icon = i;
-
-                    if (TaskbarManager.IsPlatformSupported && Visible)
-                        TaskbarManager.Instance.SetOverlayIcon(i, t.Temperature.ToString());
+                    icon = Icon.FromHandle(b.GetHicon());
+                    notifyIcon.Icon = icon;
                 }
                 notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
                     t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind());
@@ -174,6 +170,13 @@ namespace Weather
                 Properties.Settings.Default.Save();
                 RefreshData();
             }
+        }
+
+        private void MainForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (icon != null && Visible && TaskbarManager.IsPlatformSupported)
+                TaskbarManager.Instance.SetOverlayIcon(icon,
+                    data.GetCurrentForecast().Temperature.ToString());
         }
     }
 }

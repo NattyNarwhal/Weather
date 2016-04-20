@@ -52,10 +52,10 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsButton = new System.Windows.Forms.Button();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
@@ -179,6 +179,7 @@
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
+            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.linksMenu.Size = new System.Drawing.Size(132, 120);
             // 
@@ -242,14 +243,21 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.refreshToolStripMenuItem.Text = "&Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Text = "&Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(110, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(113, 6);
             // 
             // linksToolStripMenuItem
             // 
@@ -270,13 +278,6 @@
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.settingsToolStripMenuItem.Text = "&Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,6 +290,7 @@
             this.Controls.Add(this.refreshButton);
             this.Name = "MainForm";
             this.Text = "Weather";
+            this.VisibleChanged += new System.EventHandler(this.MainForm_VisibleChanged);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.linksMenu.ResumeLayout(false);

@@ -23,5 +23,12 @@ namespace Weather
         {
             return time > t.From && time < t.To;
         }
+
+        public static TabularTime GetCurrentForecast(this WeatherData data)
+        {
+            var adjustedNow = DateTime.UtcNow.AddMinutes
+                (data.Location.TimeZone.UTCOffsetMinutes);
+            return data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault();
+        }
     }
 }
