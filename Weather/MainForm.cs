@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -88,12 +89,20 @@ namespace Weather
                 {
                     using (Graphics g = Graphics.FromImage(b))
                     {
-                        g.DrawString(String.Format("{0}°", t.Temperature.Value),
-                            new Font(FontFamily.GenericMonospace, 8, FontStyle.Regular),
-                            Brushes.White, PointF.Empty);
+                        var pos = !(t.Temperature.Value < 0);
+
+                        g.FillEllipse(pos ? Brushes.White : Brushes.Black,
+                            new Rectangle(0, 0, 15, 15));
+                        g.DrawEllipse(pos ? Pens.Black : Pens.White, new Rectangle(0, 0, 15, 15));
+                        g.DrawString(String.Format("{0}", Math.Abs(99)),
+                            new Font(FontFamily.GenericMonospace, 7, FontStyle.Regular),
+                            pos ? Brushes.Black : Brushes.White, new Point(0, 0));
                     }
                     Icon i = Icon.FromHandle(b.GetHicon());
                     notifyIcon.Icon = i;
+
+                    if (TaskbarManager.IsPlatformSupported)
+                        TaskbarManager.Instance.SetOverlayIcon(i, t.Temperature.ToString());
                 }
                 notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
                     t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind());
