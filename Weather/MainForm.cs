@@ -87,7 +87,10 @@ namespace Weather
                 {
                     var lvi = new ListViewItem();
                     lvi.Group = lvg;
-                    if (i.FitsInPeriod(adjustedNow))
+                    // sometimes the site doesn't include the period that
+                    // the adjusted date fits in
+                    if (i.FitsInPeriod(adjustedNow) ||
+                        (i.From.Date == adjustedNow.Date && g.First() == i ))
                         lvi.Font = new Font(lvi.Font, FontStyle.Bold);
                     lvi.Text = string.Format("{0} - {1}",
                         i.From.ToShortTimeString(), i.To.ToShortTimeString());
@@ -175,8 +178,17 @@ namespace Weather
         private void MainForm_VisibleChanged(object sender, EventArgs e)
         {
             if (icon != null && Visible && TaskbarManager.IsPlatformSupported)
-                TaskbarManager.Instance.SetOverlayIcon(icon,
-                    data.GetCurrentForecast().Temperature.ToString());
+            {
+                try
+                {
+                    TaskbarManager.Instance.SetOverlayIcon(icon,
+                        data.GetCurrentForecast().Temperature.ToString() ?? "");
+                }
+                catch (InvalidOperationException)
+                {
+                    
+                }
+            }
         }
     }
 }

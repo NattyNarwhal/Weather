@@ -28,7 +28,8 @@ namespace Weather
         {
             var adjustedNow = DateTime.UtcNow.AddMinutes
                 (data.Location.TimeZone.UTCOffsetMinutes);
-            return data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault();
+            return data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault()
+                ?? data.Forecast.Times.Where(x => x.From.Date == adjustedNow.Date).FirstOrDefault();
         }
     }
 }
