@@ -23,15 +23,5 @@ namespace Weather
         {
             InitializeComponent();
         }
-
-        private void cityBox_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void cityBox_Validated(object sender, EventArgs e)
-        {
-            errorProvider.SetError(cityBox, "");
-        }
     }
 }
