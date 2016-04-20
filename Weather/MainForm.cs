@@ -90,8 +90,7 @@ namespace Weather
                 {
                     var lvi = new ListViewItem();
                     lvi.Group = lvg;
-                    if (i.FitsInPeriod(adjustedNow) ||
-                        (i.From.Date == adjustedNow.Date && g.First() == i && g.Count() < 4))
+                    if (i.FitsInPeriod(adjustedNow))
                         lvi.Font = new Font(lvi.Font, FontStyle.Bold);
                     lvi.Text = string.Format("{0} - {1}",
                         i.From.ToShortTimeString(), i.To.ToShortTimeString());
@@ -105,8 +104,7 @@ namespace Weather
             }
 
             // current conditions
-            var t = data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault()
-                ?? data.Forecast.Times.Where(x => x.From.Date == adjustedNow.Date).FirstOrDefault();
+            var t = data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault();
             if (t != null)
             {
                 //make icons
