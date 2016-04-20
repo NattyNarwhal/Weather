@@ -92,6 +92,7 @@
             // 
             // forecastBox
             // 
+            this.forecastBox.AllowColumnReorder = true;
             this.forecastBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.periodCol,
             this.conditionCol,
@@ -110,7 +111,7 @@
             // periodCol
             // 
             this.periodCol.Text = "Period";
-            this.periodCol.Width = 110;
+            this.periodCol.Width = 140;
             // 
             // tempCol
             // 
@@ -125,7 +126,7 @@
             // windCol
             // 
             this.windCol.Text = "Wind";
-            this.windCol.Width = 90;
+            this.windCol.Width = 100;
             // 
             // pressureCol
             // 
