@@ -190,5 +190,14 @@ namespace Weather
                 }
             }
         }
+
+        private void updatePollTimer_Tick(object sender, EventArgs e)
+        {
+            if (DateTime.UtcNow > data.Meta.NextUpdate.AddMinutes
+                (-data.Location.TimeZone.UTCOffsetMinutes))
+            {
+                RefreshData();
+            }
+        }
     }
 }

@@ -49,13 +49,14 @@
             this.hourlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.longTermToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.updatePollTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
@@ -179,7 +180,7 @@
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
-            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
+            this.linksMenu.OwnerItem = this.linksButton;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.linksMenu.Size = new System.Drawing.Size(132, 120);
             // 
@@ -223,6 +224,13 @@
             this.radarToolStripMenuItem.Text = "&Radar";
             this.radarToolStripMenuItem.Click += new System.EventHandler(this.radarToolStripMenuItem_Click);
             // 
+            // linksToolStripMenuItem
+            // 
+            this.linksToolStripMenuItem.DropDown = this.linksMenu;
+            this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
+            this.linksToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.linksToolStripMenuItem.Text = "&Links";
+            // 
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
@@ -259,13 +267,6 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(113, 6);
             // 
-            // linksToolStripMenuItem
-            // 
-            this.linksToolStripMenuItem.DropDown = this.linksMenu;
-            this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
-            this.linksToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.linksToolStripMenuItem.Text = "&Links";
-            // 
             // settingsButton
             // 
             this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -277,6 +278,12 @@
             this.settingsButton.Text = "&Settings";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // updatePollTimer
+            // 
+            this.updatePollTimer.Enabled = true;
+            this.updatePollTimer.Interval = 3600000;
+            this.updatePollTimer.Tick += new System.EventHandler(this.updatePollTimer_Tick);
             // 
             // MainForm
             // 
@@ -329,6 +336,7 @@
         private System.Windows.Forms.ToolStripMenuItem radarToolStripMenuItem;
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.Timer updatePollTimer;
     }
 }
 
