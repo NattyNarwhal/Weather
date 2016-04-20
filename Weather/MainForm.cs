@@ -35,6 +35,10 @@ namespace Weather
                 }
                 SyncState();
             }
+            catch (WebException)
+            {
+                FlashError("An error occured trying to download the weather data.");
+            }
             catch (InvalidOperationException)
             {
                 FlashError("An error occured parsing the weather data.");
@@ -174,6 +178,7 @@ namespace Weather
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
                 weatherLocation = sf.WeatherLocation;
+                Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.Save();
                 RefreshData();
             }
