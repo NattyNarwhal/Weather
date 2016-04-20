@@ -94,9 +94,9 @@ namespace Weather
                         g.FillEllipse(pos ? Brushes.White : Brushes.Black,
                             new Rectangle(0, 0, 15, 15));
                         g.DrawEllipse(pos ? Pens.Black : Pens.White, new Rectangle(0, 0, 15, 15));
-                        g.DrawString(String.Format("{0}", Math.Abs(99)),
-                            new Font(FontFamily.GenericMonospace, 7, FontStyle.Regular),
-                            pos ? Brushes.Black : Brushes.White, new Point(0, 0));
+                        g.DrawString(String.Format("{0}", Math.Abs(t.Temperature.Value)),
+                            new Font(FontFamily.GenericMonospace, 8, FontStyle.Regular),
+                            pos ? Brushes.Black : Brushes.White, new Point(-1, 0));
                     }
                     Icon i = Icon.FromHandle(b.GetHicon());
                     notifyIcon.Icon = i;
