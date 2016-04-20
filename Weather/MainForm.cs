@@ -51,15 +51,7 @@ namespace Weather
 
         public void FlashError(string message)
         {
-            if (notifyIcon.Icon != null)
-            {
-                notifyIcon.ShowBalloonTip(15000, "An error occured with fetching the weather",
-                    message, ToolTipIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show(this, message, "Weather", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show(this, message, "Weather", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void SyncState()
