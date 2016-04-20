@@ -55,6 +55,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
@@ -178,7 +179,6 @@
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
-            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.linksMenu.Size = new System.Drawing.Size(132, 120);
             // 
@@ -232,11 +232,12 @@
             // 
             this.notifyIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.toolStripMenuItem2,
             this.linksToolStripMenuItem});
             this.notifyIconMenu.Name = "notifyIconMenu";
             this.notifyIconMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.notifyIconMenu.Size = new System.Drawing.Size(114, 54);
+            this.notifyIconMenu.Size = new System.Drawing.Size(117, 76);
             // 
             // refreshToolStripMenuItem
             // 
@@ -254,11 +255,12 @@
             // 
             this.linksToolStripMenuItem.DropDown = this.linksMenu;
             this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
-            this.linksToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.linksToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.linksToolStripMenuItem.Text = "&Links";
             // 
             // settingsButton
             // 
+            this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.settingsButton.Location = new System.Drawing.Point(381, 12);
             this.settingsButton.Name = "settingsButton";
@@ -267,6 +269,13 @@
             this.settingsButton.Text = "&Settings";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Text = "&Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // MainForm
             // 
@@ -317,6 +326,7 @@
         private System.Windows.Forms.ToolStripMenuItem longTermToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem radarToolStripMenuItem;
         private System.Windows.Forms.Button settingsButton;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 
