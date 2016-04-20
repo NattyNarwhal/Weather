@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -43,6 +44,9 @@ namespace Weather
         public void SyncState()
         {
             Text = data.Location.ToString();
+            creditsLink.Text = data.Credit.Link.Text;
+            statusLabel.Text = String.Format("Last update: {0} Next update: {1}",
+                data.Meta.LastUpdate, data.Meta.NextUpdate);
 
             // forecast
             forecastBox.Items.Clear();
@@ -68,6 +72,11 @@ namespace Weather
                     forecastBox.Items.Add(lvi);
                 }
             }
+        }
+
+        private void creditsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(data.Credit.Link.Url);
         }
     }
 }

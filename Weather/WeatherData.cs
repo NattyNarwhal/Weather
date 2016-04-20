@@ -213,11 +213,11 @@ namespace Weather
     public class Precipitation
     {
         [XmlAttribute(AttributeName = "value")]
-        public int Value { get; set; }
+        public float Value { get; set; }
 
         public override string ToString()
         {
-            return Value.ToString() + " mm";
+            return String.Format("{0:F0} mm", Value);
         }
     }
 
@@ -258,7 +258,7 @@ namespace Weather
 
         public override string ToString()
         {
-            return String.Format("{0} {1}", Value, Unit);
+            return String.Format("{0} C", Value);
         }
     }
 
@@ -271,7 +271,7 @@ namespace Weather
 
         public override string ToString()
         {
-            return String.Format("{0} {1}", Value, Unit);
+            return String.Format("{0:F0} {1}", Value, Unit);
         }
     }
     #endregion
