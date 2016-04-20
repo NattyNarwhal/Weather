@@ -32,15 +32,16 @@
             this.cityLabel = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButtton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cityBox
             // 
             this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityBox.Location = new System.Drawing.Point(42, 12);
+            this.cityBox.Location = new System.Drawing.Point(66, 12);
             this.cityBox.Name = "cityBox";
-            this.cityBox.Size = new System.Drawing.Size(230, 20);
+            this.cityBox.Size = new System.Drawing.Size(206, 20);
             this.cityBox.TabIndex = 0;
             // 
             // cityLabel
@@ -48,16 +49,16 @@
             this.cityLabel.AutoSize = true;
             this.cityLabel.Location = new System.Drawing.Point(12, 15);
             this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(24, 13);
+            this.cityLabel.Size = new System.Drawing.Size(48, 13);
             this.cityLabel.TabIndex = 1;
-            this.cityLabel.Text = "City";
+            this.cityLabel.Text = "Location";
             // 
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cancelButton.Location = new System.Drawing.Point(197, 42);
+            this.cancelButton.Location = new System.Drawing.Point(197, 88);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -69,12 +70,24 @@
             this.okButtton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButtton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButtton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.okButtton.Location = new System.Drawing.Point(116, 42);
+            this.okButtton.Location = new System.Drawing.Point(116, 88);
             this.okButtton.Name = "okButtton";
             this.okButtton.Size = new System.Drawing.Size(75, 23);
             this.okButtton.TabIndex = 3;
             this.okButtton.Text = "O&K";
             this.okButtton.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(66, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(206, 50);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "You can get the path for your city (like \"Canada/Ontario/Toronto\") by looking it " +
+    "up on yr.no.";
             // 
             // SettingsForm
             // 
@@ -82,7 +95,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(284, 77);
+            this.ClientSize = new System.Drawing.Size(284, 123);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.okButtton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.cityLabel);
@@ -102,5 +116,6 @@
         private System.Windows.Forms.TextBox cityBox;
         private System.Windows.Forms.Button okButtton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label label1;
     }
 }
