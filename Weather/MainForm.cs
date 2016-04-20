@@ -76,11 +76,32 @@ namespace Weather
                     lvi.SubItems.Add(i.Symbol.Name);
                     lvi.SubItems.Add(i.Temperature.ToString());
                     lvi.SubItems.Add(i.Precipitation.ToString());
-                    lvi.SubItems.Add(string.Format("{0} m/s {1}",
-                        i.WindSpeed.MetersPerSecond.ToString(), i.WindDirection.Code));
+                    lvi.SubItems.Add(i.Wind());
                     lvi.SubItems.Add(i.Pressure.ToString());
                     forecastBox.Items.Add(lvi);
                 }
+            }
+
+            // current conditions
+            var t = data.Forecast.Times.Where(x => DateTime.UtcNow > x.From
+                && DateTime.UtcNow < x.To).FirstOrDefault();
+            if (t != null)
+            {
+                //make icons
+                using (Bitmap b = new Bitmap(16, 16))
+                {
+                    using (Graphics g = Graphics.FromImage(b))
+                    {
+                        g.DrawString(String.Format("{0}°", t.Temperature.Value),
+                            new Font(FontFamily.GenericMonospace, 8, FontStyle.Regular),
+                            Brushes.White, PointF.Empty);
+                    }
+                    Icon i = Icon.FromHandle(b.GetHicon());
+                    notifyIcon.Icon = i;
+                }
+                notifyIcon.Text = String.Format("{0}\r\n{1}\r\n{2}\r\n{3}r\n{4}",
+                    t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(), t.Pressure);
+                notifyIcon.Visible = true;
             }
         }
 
@@ -112,6 +133,11 @@ namespace Weather
         private void radarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(data.Links.Where(x => x.Id == "radar").FirstOrDefault()?.Url);
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Visible = !Visible;
         }
     }
 }
