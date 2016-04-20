@@ -51,7 +51,7 @@ namespace Weather
         {
             if (notifyIcon.Icon != null)
             {
-                notifyIcon.ShowBalloonTip(10000, "An error occured with fetching the weather",
+                notifyIcon.ShowBalloonTip(15000, "An error occured with fetching the weather",
                     message, ToolTipIcon.Error);
             }
             else
