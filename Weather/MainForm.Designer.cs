@@ -54,6 +54,7 @@
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
@@ -127,7 +128,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sunLabel.Location = new System.Drawing.Point(9, 12);
             this.sunLabel.Name = "sunLabel";
-            this.sunLabel.Size = new System.Drawing.Size(447, 23);
+            this.sunLabel.Size = new System.Drawing.Size(366, 23);
             this.sunLabel.TabIndex = 3;
             this.sunLabel.Text = " ";
             this.sunLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,11 +257,23 @@
             this.linksToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.linksToolStripMenuItem.Text = "&Links";
             // 
+            // settingsButton
+            // 
+            this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.settingsButton.Location = new System.Drawing.Point(381, 12);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(75, 23);
+            this.settingsButton.TabIndex = 5;
+            this.settingsButton.Text = "&Settings";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 350);
+            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.forecastBox);
             this.Controls.Add(this.sunLabel);
@@ -303,6 +316,7 @@
         private System.Windows.Forms.ToolStripMenuItem hourlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem longTermToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem radarToolStripMenuItem;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
 

@@ -13,16 +13,13 @@ namespace Weather
 {
     public partial class MainForm : Form
     {
-        const string yrnoBase = "http://www.yr.no/place/{0}/forecast.xml";
-
         public WeatherData data;
-        private WebClient wc = new WebClient();
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
 
         public MainForm()
         {
             InitializeComponent();
-            wc.Headers.Add(HttpRequestHeader.UserAgent, "https://github.com/NattyNarwhal/Weather");
+            
             RefreshData();
         }
 
@@ -30,7 +27,7 @@ namespace Weather
         {
             try
             {
-                //using (var fs = wc.OpenRead(String.Format(yrnoBase, "Norway/Telemark/Sauherad/Gvarv")))
+                //using (var fs = Fetcher.GetStream("Norway/Telemark/Sauherad/Gvarv"))
                 using (var fs = File.OpenRead("Y:\\norway.xml"))
                 {
                     data = (WeatherData)xs.Deserialize(fs);
@@ -162,6 +159,11 @@ namespace Weather
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Visible = !Visible;
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().ShowDialog(this);
         }
     }
 }
