@@ -60,6 +60,9 @@ namespace Weather
 
         public void SyncState()
         {
+            var adjustedNow = DateTime.UtcNow.AddMinutes
+                (data.Location.TimeZone.UTCOffsetMinutes);
+
             Text = data.Location.ToString();
             creditsToolStripMenuItem.ToolTipText = data.Credit.Link.Text;
             sunLabel.Text = String.Format("The sun will rise at {0} and set at {1}.",
@@ -87,8 +90,8 @@ namespace Weather
                 {
                     var lvi = new ListViewItem();
                     lvi.Group = lvg;
-                    if (i.FitsInPeriod(DateTime.UtcNow) ||
-                        (i.From.Date == DateTime.UtcNow.Date && g.First() == i && g.Count() < 4))
+                    if (i.FitsInPeriod(adjustedNow) ||
+                        (i.From.Date == adjustedNow.Date && g.First() == i && g.Count() < 4))
                         lvi.Font = new Font(lvi.Font, FontStyle.Bold);
                     lvi.Text = string.Format("{0} - {1}",
                         i.From.ToShortTimeString(), i.To.ToShortTimeString());
@@ -102,8 +105,8 @@ namespace Weather
             }
 
             // current conditions
-            var t = data.Forecast.Times.Where(x => x.FitsInPeriod(DateTime.UtcNow)).FirstOrDefault()
-                ?? data.Forecast.Times.Where(x => x.From.Date == DateTime.UtcNow.Date).FirstOrDefault();
+            var t = data.Forecast.Times.Where(x => x.FitsInPeriod(adjustedNow)).FirstOrDefault()
+                ?? data.Forecast.Times.Where(x => x.From.Date == adjustedNow.Date).FirstOrDefault();
             if (t != null)
             {
                 //make icons
@@ -173,6 +176,7 @@ namespace Weather
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
                 weatherLocation = sf.WeatherLocation;
+                Properties.Settings.Default.Save();
                 RefreshData();
             }
         }
