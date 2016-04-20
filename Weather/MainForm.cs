@@ -50,7 +50,7 @@ namespace Weather
             Text = data.Location.ToString();
             creditsToolStripMenuItem.ToolTipText = data.Credit.Link.Text;
             sunLabel.Text = String.Format("The sun will rise at {0} and set at {1}.",
-                data.Sun.Rise, data.Sun.Set);
+                data.Sun.Rise.ToShortTimeString(), data.Sun.Set.ToShortTimeString());
             lastUpdateLabel.Text = String.Format("Last update: {0}",
                 data.Meta.LastUpdate);
             nextUpdateLabel.Text = String.Format("Next update: {0}",
@@ -99,8 +99,8 @@ namespace Weather
                     Icon i = Icon.FromHandle(b.GetHicon());
                     notifyIcon.Icon = i;
                 }
-                notifyIcon.Text = String.Format("{0}\r\n{1}\r\n{2}\r\n{3}r\n{4}",
-                    t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(), t.Pressure);
+                notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
+                    t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind());
                 notifyIcon.Visible = true;
             }
         }

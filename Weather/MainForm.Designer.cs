@@ -220,6 +220,7 @@
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
+            this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // notifyIconMenu
@@ -230,7 +231,7 @@
             this.linksToolStripMenuItem});
             this.notifyIconMenu.Name = "notifyIconMenu";
             this.notifyIconMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.notifyIconMenu.Size = new System.Drawing.Size(153, 76);
+            this.notifyIconMenu.Size = new System.Drawing.Size(114, 54);
             // 
             // refreshToolStripMenuItem
             // 
