@@ -69,6 +69,11 @@ namespace Weather
             nextUpdateLabel.Text = String.Format("Next update: {0}",
                 data.Meta.NextUpdate);
 
+            overviewToolStripMenuItem.Enabled = data.Links.Any(x => x.Id == "overview");
+            hourlyToolStripMenuItem.Enabled = data.Links.Any(x => x.Id == "hourByHour");
+            longTermToolStripMenuItem.Enabled = data.Links.Any(x => x.Id == "longTermForecast");
+            radarToolStripMenuItem.Enabled = data.Links.Any(x => x.Id == "radar");
+
             // forecast
             forecastBox.Items.Clear();
             forecastBox.Groups.Clear();
