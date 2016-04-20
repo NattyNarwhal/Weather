@@ -38,6 +38,7 @@
             this.precipCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.windCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pressureCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.conditionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.forecastPage.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +47,7 @@
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.refreshButton.Location = new System.Drawing.Point(383, 12);
+            this.refreshButton.Location = new System.Drawing.Point(462, 12);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 0;
@@ -63,7 +64,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(446, 297);
+            this.tabControl1.Size = new System.Drawing.Size(525, 297);
             this.tabControl1.TabIndex = 1;
             // 
             // forecastPage
@@ -72,7 +73,7 @@
             this.forecastPage.Location = new System.Drawing.Point(4, 22);
             this.forecastPage.Name = "forecastPage";
             this.forecastPage.Padding = new System.Windows.Forms.Padding(3);
-            this.forecastPage.Size = new System.Drawing.Size(438, 271);
+            this.forecastPage.Size = new System.Drawing.Size(517, 271);
             this.forecastPage.TabIndex = 0;
             this.forecastPage.Text = "Forecast";
             this.forecastPage.UseVisualStyleBackColor = true;
@@ -91,6 +92,7 @@
             // 
             this.forecastBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.periodCol,
+            this.conditionCol,
             this.tempCol,
             this.precipCol,
             this.windCol,
@@ -98,7 +100,7 @@
             this.forecastBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.forecastBox.Location = new System.Drawing.Point(3, 3);
             this.forecastBox.Name = "forecastBox";
-            this.forecastBox.Size = new System.Drawing.Size(432, 265);
+            this.forecastBox.Size = new System.Drawing.Size(511, 265);
             this.forecastBox.TabIndex = 0;
             this.forecastBox.UseCompatibleStateImageBehavior = false;
             this.forecastBox.View = System.Windows.Forms.View.Details;
@@ -128,11 +130,16 @@
             this.pressureCol.Text = "Pressure";
             this.pressureCol.Width = 80;
             // 
+            // conditionCol
+            // 
+            this.conditionCol.Text = "Conditions";
+            this.conditionCol.Width = 80;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 350);
+            this.ClientSize = new System.Drawing.Size(549, 350);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.refreshButton);
             this.Name = "MainForm";
@@ -155,6 +162,7 @@
         private System.Windows.Forms.ColumnHeader precipCol;
         private System.Windows.Forms.ColumnHeader windCol;
         private System.Windows.Forms.ColumnHeader pressureCol;
+        private System.Windows.Forms.ColumnHeader conditionCol;
     }
 }
 

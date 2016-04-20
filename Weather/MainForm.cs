@@ -59,6 +59,7 @@ namespace Weather
                     lvi.Group = lvg;
                     lvi.Text = string.Format("{0} - {1}",
                         i.From.ToShortTimeString(), i.To.ToShortTimeString());
+                    lvi.SubItems.Add(i.Symbol.Name);
                     lvi.SubItems.Add(i.Temperature.ToString());
                     lvi.SubItems.Add(i.Precipitation.ToString());
                     lvi.SubItems.Add(string.Format("{0} m/s {1}",
