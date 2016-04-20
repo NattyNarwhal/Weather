@@ -13,12 +13,14 @@ namespace Weather
 {
     public partial class MainForm : Form
     {
+        public string weatherLocation;
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
 
         public MainForm()
         {
             InitializeComponent();
+            weatherLocation = Properties.Settings.Default.WeatherLocation;
             
             RefreshData();
         }
@@ -27,8 +29,7 @@ namespace Weather
         {
             try
             {
-                //using (var fs = Fetcher.GetStream("Norway/Telemark/Sauherad/Gvarv"))
-                using (var fs = File.OpenRead("Y:\\norway.xml"))
+                using (var fs = Fetcher.GetStream(weatherLocation))
                 {
                     data = (WeatherData)xs.Deserialize(fs);
                 }
@@ -163,7 +164,12 @@ namespace Weather
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            new SettingsForm().ShowDialog(this);
+            SettingsForm sf = new SettingsForm() { WeatherLocation = weatherLocation };
+            if (sf.ShowDialog(this) == DialogResult.OK)
+            {
+                weatherLocation = sf.WeatherLocation;
+                RefreshData();
+            }
         }
     }
 }

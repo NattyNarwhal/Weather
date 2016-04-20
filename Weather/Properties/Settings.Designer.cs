@@ -22,5 +22,17 @@ namespace Weather.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Canada/Ontario/Toronto")]
+        public string WeatherLocation {
+            get {
+                return ((string)(this["WeatherLocation"]));
+            }
+            set {
+                this["WeatherLocation"] = value;
+            }
+        }
     }
 }
