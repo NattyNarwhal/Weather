@@ -35,6 +35,10 @@ namespace Weather
 
                 SyncState();
             }
+            catch (InvalidOperationException)
+            {
+                // XML error
+            }
             catch (Exception)
             {
 
@@ -44,9 +48,13 @@ namespace Weather
         public void SyncState()
         {
             Text = data.Location.ToString();
-            creditsLink.Text = data.Credit.Link.Text;
-            statusLabel.Text = String.Format("Last update: {0} Next update: {1}",
-                data.Meta.LastUpdate, data.Meta.NextUpdate);
+            creditsToolStripMenuItem.ToolTipText = data.Credit.Link.Text;
+            sunLabel.Text = String.Format("The sun will rise at {0} and set at {1}.",
+                data.Sun.Rise, data.Sun.Set);
+            lastUpdateLabel.Text = String.Format("Last update: {0}",
+                data.Meta.LastUpdate);
+            nextUpdateLabel.Text = String.Format("Next update: {0}",
+                data.Meta.NextUpdate);
 
             // forecast
             forecastBox.Items.Clear();
@@ -76,9 +84,34 @@ namespace Weather
             }
         }
 
-        private void creditsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(data.Credit.Link.Url);
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void overviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(data.Links.Where(x => x.Id == "overview").FirstOrDefault()?.Url);
+        }
+
+        private void hourlyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(data.Links.Where(x => x.Id == "hourByHour").FirstOrDefault()?.Url);
+        }
+
+        private void longTermToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(data.Links.Where(x => x.Id == "longTermForecast").FirstOrDefault()?.Url);
+        }
+
+        private void radarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(data.Links.Where(x => x.Id == "radar").FirstOrDefault()?.Url);
         }
     }
 }
