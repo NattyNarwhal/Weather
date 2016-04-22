@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,18 @@ namespace Weather
         public SettingsForm()
         {
             InitializeComponent();
+        }
+
+        private void searchLocationLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://www.yr.no/soek/soek.aspx");
+        }
+
+        private void validateButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(cityBox, !Fetcher.LocationExists(cityBox.Text) ?
+                "The location could not be found." : String.Empty);
+            okButtton.Enabled = errorProvider1.GetError(cityBox) == String.Empty;
         }
     }
 }
