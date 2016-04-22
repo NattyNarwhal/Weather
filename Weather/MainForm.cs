@@ -25,7 +25,7 @@ namespace Weather
             InitializeComponent();
             weatherLocation = Properties.Settings.Default.WeatherLocation;
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
-            
+
             RefreshData();
         }
 
@@ -93,7 +93,7 @@ namespace Weather
                     // sometimes the site doesn't include the period that
                     // the adjusted date fits in
                     if (i.FitsInPeriod(adjustedNow) ||
-                        (i.From.Date == adjustedNow.Date && g.First() == i ))
+                        (i.From.Date == adjustedNow.Date && g.First() == i))
                         lvi.Font = new Font(lvi.Font, FontStyle.Bold);
                     lvi.Text = string.Format("{0} - {1}",
                         i.From.ToShortTimeString(), i.To.ToShortTimeString());
@@ -188,11 +188,17 @@ namespace Weather
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            SettingsForm sf = new SettingsForm() { WeatherLocation = weatherLocation };
+            SettingsForm sf = new SettingsForm()
+            {
+                WeatherLocation = weatherLocation,
+                UseNotificationIcon = useNotificationIcon
+            };
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
                 weatherLocation = sf.WeatherLocation;
+                useNotificationIcon = sf.UseNotificationIcon;
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
+                Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
                 Properties.Settings.Default.Save();
                 RefreshData();
             }

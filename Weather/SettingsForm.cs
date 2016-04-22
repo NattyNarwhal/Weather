@@ -17,6 +17,12 @@ namespace Weather
             set { cityBox.Text = value; }
         }
 
+        public bool UseNotificationIcon
+        {
+            get { return notificationEnableBox.Checked; }
+            set { notificationEnableBox.Checked = value; }
+        }
+
         public SettingsForm()
         {
             InitializeComponent();
