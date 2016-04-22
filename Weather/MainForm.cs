@@ -15,6 +15,7 @@ namespace Weather
     {
         public string weatherLocation;
         public bool useNotificationIcon;
+        public bool hourlyForecast;
 
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
@@ -25,6 +26,7 @@ namespace Weather
             InitializeComponent();
             weatherLocation = Properties.Settings.Default.WeatherLocation;
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
+            hourlyForecast = Properties.Settings.Default.Hourly;
 
             RefreshData();
         }
@@ -33,7 +35,7 @@ namespace Weather
         {
             try
             {
-                using (var fs = Fetcher.GetStream(weatherLocation))
+                using (var fs = Fetcher.GetStream(weatherLocation, hourlyForecast))
                 {
                     data = (WeatherData)xs.Deserialize(fs);
                 }
@@ -191,14 +193,17 @@ namespace Weather
             SettingsForm sf = new SettingsForm()
             {
                 WeatherLocation = weatherLocation,
-                UseNotificationIcon = useNotificationIcon
+                UseNotificationIcon = useNotificationIcon,
+                Hourly = hourlyForecast
             };
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
                 weatherLocation = sf.WeatherLocation;
                 useNotificationIcon = sf.UseNotificationIcon;
+                hourlyForecast = sf.Hourly;
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
+                Properties.Settings.Default.Hourly = hourlyForecast;
                 Properties.Settings.Default.Save();
                 RefreshData();
             }

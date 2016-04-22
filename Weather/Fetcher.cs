@@ -10,7 +10,11 @@ namespace Weather
     public static class Fetcher
     {
         const string ua = "https://github.com/NattyNarwhal/Weather";
-        const string yrnoBase = "http://www.yr.no/place/{0}/forecast.xml";
+
+        const string yrnoBase = "http://www.yr.no/place/{0}/{1}.xml";
+        const string normalForecast = "forecast";
+        const string hourlyForecast = "forecast_hour_by_hour";
+
         static WebClient wc = new WebClient();
 
         static Fetcher()
@@ -18,19 +22,20 @@ namespace Weather
             wc.Headers.Add(HttpRequestHeader.UserAgent, ua);
         }
 
-        static string GetUrl(string location)
+        static string GetUrl(string location, bool hourly)
         {
-            return String.Format(yrnoBase, location);
+            return String.Format(yrnoBase, location,
+                hourly ? hourlyForecast : normalForecast);
         }
 
-        public static Stream GetStream(string location)
+        public static Stream GetStream(string location, bool hourly)
         {
-            return wc.OpenRead(GetUrl(location));
+            return wc.OpenRead(GetUrl(location, hourly));
         }
 
         public static bool LocationExists(string location)
         {
-            var wr = (HttpWebRequest)WebRequest.Create(GetUrl(location));
+            var wr = (HttpWebRequest)WebRequest.Create(GetUrl(location, false));
             wr.Method = "HEAD";
             wr.UserAgent = ua;
             try

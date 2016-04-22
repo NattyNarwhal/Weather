@@ -46,5 +46,17 @@ namespace Weather.Properties {
                 this["UseNotificationIcon"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Hourly {
+            get {
+                return ((bool)(this["Hourly"]));
+            }
+            set {
+                this["Hourly"] = value;
+            }
+        }
     }
 }

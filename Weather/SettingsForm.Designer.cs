@@ -36,6 +36,7 @@
             this.notificationExplanation = new System.Windows.Forms.Label();
             this.locationGroup = new System.Windows.Forms.GroupBox();
             this.displayGroup = new System.Windows.Forms.GroupBox();
+            this.hourlyBox = new System.Windows.Forms.CheckBox();
             this.locationGroup.SuspendLayout();
             this.displayGroup.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +55,7 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cancelButton.Location = new System.Drawing.Point(197, 214);
+            this.cancelButton.Location = new System.Drawing.Point(197, 224);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -66,7 +67,7 @@
             this.okButtton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButtton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButtton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.okButtton.Location = new System.Drawing.Point(116, 214);
+            this.okButtton.Location = new System.Drawing.Point(116, 224);
             this.okButtton.Name = "okButtton";
             this.okButtton.Size = new System.Drawing.Size(75, 23);
             this.okButtton.TabIndex = 3;
@@ -97,12 +98,11 @@
             // 
             // notificationExplanation
             // 
-            this.notificationExplanation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.notificationExplanation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.notificationExplanation.Location = new System.Drawing.Point(6, 39);
             this.notificationExplanation.Name = "notificationExplanation";
-            this.notificationExplanation.Size = new System.Drawing.Size(248, 48);
+            this.notificationExplanation.Size = new System.Drawing.Size(248, 42);
             this.notificationExplanation.TabIndex = 6;
             this.notificationExplanation.Text = "If this is disabled and you\'re using Windows 7 or newer, then the taskbar icon wi" +
     "ll have the icon as a badge instead.";
@@ -122,14 +122,25 @@
             // 
             this.displayGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.displayGroup.Controls.Add(this.hourlyBox);
             this.displayGroup.Controls.Add(this.notificationEnableBox);
             this.displayGroup.Controls.Add(this.notificationExplanation);
             this.displayGroup.Location = new System.Drawing.Point(12, 112);
             this.displayGroup.Name = "displayGroup";
-            this.displayGroup.Size = new System.Drawing.Size(260, 90);
+            this.displayGroup.Size = new System.Drawing.Size(260, 105);
             this.displayGroup.TabIndex = 8;
             this.displayGroup.TabStop = false;
             this.displayGroup.Text = "Display";
+            // 
+            // hourlyBox
+            // 
+            this.hourlyBox.AutoSize = true;
+            this.hourlyBox.Location = new System.Drawing.Point(6, 84);
+            this.hourlyBox.Name = "hourlyBox";
+            this.hourlyBox.Size = new System.Drawing.Size(97, 17);
+            this.hourlyBox.TabIndex = 7;
+            this.hourlyBox.Text = "Hourly forecast";
+            this.hourlyBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -137,7 +148,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(284, 249);
+            this.ClientSize = new System.Drawing.Size(284, 259);
             this.Controls.Add(this.displayGroup);
             this.Controls.Add(this.locationGroup);
             this.Controls.Add(this.okButtton);
@@ -164,5 +175,6 @@
         private System.Windows.Forms.Label notificationExplanation;
         private System.Windows.Forms.GroupBox locationGroup;
         private System.Windows.Forms.GroupBox displayGroup;
+        private System.Windows.Forms.CheckBox hourlyBox;
     }
 }

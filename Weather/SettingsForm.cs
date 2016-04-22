@@ -23,6 +23,12 @@ namespace Weather
             set { notificationEnableBox.Checked = value; }
         }
 
+        public bool Hourly
+        {
+            get { return hourlyBox.Checked; }
+            set { hourlyBox.Checked = value; }
+        }
+
         public SettingsForm()
         {
             InitializeComponent();
