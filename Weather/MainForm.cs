@@ -22,6 +22,7 @@ namespace Weather
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
         private Icon icon; // used for both notify + taskbar overlay
+        private TabbedThumbnail thumb;
 
         public MainForm()
         {
@@ -133,12 +134,19 @@ namespace Weather
                     icon = Icon.FromHandle(b.GetHicon());
                 }
 
+                var verboseDesc = String.Format("{1}, {0}\r\n{2}\r\n{3}",
+                    t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(descriptiveWind));
                 if (useNotificationIcon)
                 {
                     notifyIcon.Icon = icon;
-                    notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
-                        t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(descriptiveWind));
+                    notifyIcon.Text = verboseDesc;
                     notifyIcon.Visible = true;
+
+                    if (TaskbarManager.IsPlatformSupported)
+                    {
+                        if (TaskbarManager.Instance.TabbedThumbnail.IsThumbnailPreviewAdded(thumb))
+                            TaskbarManager.Instance.TabbedThumbnail.RemoveThumbnailPreview(thumb);
+                    }
                 }
                 else if (!useNotificationIcon && Visible && TaskbarManager.IsPlatformSupported)
                 {
@@ -147,6 +155,12 @@ namespace Weather
                     {
                         TaskbarManager.Instance.SetOverlayIcon(icon,
                             data.GetCurrentForecast().Temperature.ToString() ?? "");
+                        if (!TaskbarManager.Instance.TabbedThumbnail.IsThumbnailPreviewAdded(thumb))
+                            TaskbarManager.Instance.TabbedThumbnail.AddThumbnailPreview(thumb);
+                        thumb.SetImage(new Bitmap(String.Format("symbols/{0}.png", t.Symbol.Var)));
+                        thumb.Tooltip = verboseDesc;
+                        thumb.SetWindowIcon(icon);
+                        thumb.Title = Text;
                     }
                     catch (InvalidOperationException)
                     {
@@ -227,6 +241,12 @@ namespace Weather
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            if (TaskbarManager.IsPlatformSupported)
+            {
+                thumb = new TabbedThumbnail(Handle, Handle);
+                TaskbarManager.Instance.TabbedThumbnail.AddThumbnailPreview(thumb);
+            }
+
             RefreshData();
         }
 
