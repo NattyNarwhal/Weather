@@ -210,6 +210,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Settings";
             this.locationGroup.ResumeLayout(false);
             this.locationGroup.PerformLayout();
