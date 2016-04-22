@@ -27,8 +27,6 @@ namespace Weather
             weatherLocation = Properties.Settings.Default.WeatherLocation;
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
             hourlyForecast = Properties.Settings.Default.Hourly;
-
-            RefreshData();
         }
 
         public void RefreshData()
@@ -66,7 +64,7 @@ namespace Weather
                 (data.Location.TimeZone.UTCOffsetMinutes);
 
             Text = data.Location.ToString();
-            creditsToolStripMenuItem.ToolTipText = data.Credit.Link.Text;
+            creditLink.Text = data.Credit.Link.Text;
             sunLabel.Text = String.Format("The sun will rise at {0} and set at {1}.",
                 data.Sun.Rise.ToShortTimeString(), data.Sun.Set.ToShortTimeString());
             lastUpdateLabel.Text = String.Format("Last update: {0}",
@@ -140,6 +138,7 @@ namespace Weather
                 }
                 else if (!useNotificationIcon && Visible && TaskbarManager.IsPlatformSupported)
                 {
+                    notifyIcon.Visible = false;
                     try
                     {
                         TaskbarManager.Instance.SetOverlayIcon(icon,
@@ -151,11 +150,6 @@ namespace Weather
                     }
                 }
             }
-        }
-
-        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(data.Credit.Link.Url);
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -216,6 +210,16 @@ namespace Weather
             {
                 RefreshData();
             }
+        }
+
+        private void creditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(data.Credit.Link.Url);
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }

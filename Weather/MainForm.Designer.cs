@@ -43,8 +43,6 @@
             this.nextUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.linksButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.linksMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.overviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hourlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.longTermToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +55,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsButton = new System.Windows.Forms.Button();
             this.updatePollTimer = new System.Windows.Forms.Timer(this.components);
+            this.creditLink = new System.Windows.Forms.LinkLabel();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
@@ -89,7 +88,7 @@
             this.pressureCol});
             this.forecastBox.Location = new System.Drawing.Point(12, 41);
             this.forecastBox.Name = "forecastBox";
-            this.forecastBox.Size = new System.Drawing.Size(525, 284);
+            this.forecastBox.Size = new System.Drawing.Size(525, 261);
             this.forecastBox.TabIndex = 0;
             this.forecastBox.UseCompatibleStateImageBehavior = false;
             this.forecastBox.View = System.Windows.Forms.View.Details;
@@ -173,28 +172,13 @@
             // linksMenu
             // 
             this.linksMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.creditsToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.overviewToolStripMenuItem,
             this.hourlyToolStripMenuItem,
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
-            this.linksMenu.OwnerItem = this.linksButton;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.linksMenu.Size = new System.Drawing.Size(132, 120);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.creditsToolStripMenuItem.Text = "&Credits";
-            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 6);
+            this.linksMenu.Size = new System.Drawing.Size(132, 92);
             // 
             // overviewToolStripMenuItem
             // 
@@ -285,11 +269,23 @@
             this.updatePollTimer.Interval = 3600000;
             this.updatePollTimer.Tick += new System.EventHandler(this.updatePollTimer_Tick);
             // 
+            // creditLink
+            // 
+            this.creditLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.creditLink.Location = new System.Drawing.Point(12, 305);
+            this.creditLink.Name = "creditLink";
+            this.creditLink.Size = new System.Drawing.Size(525, 23);
+            this.creditLink.TabIndex = 6;
+            this.creditLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.creditLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.creditLink_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 350);
+            this.Controls.Add(this.creditLink);
             this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.forecastBox);
@@ -297,6 +293,7 @@
             this.Controls.Add(this.refreshButton);
             this.Name = "MainForm";
             this.Text = "Weather";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.linksMenu.ResumeLayout(false);
@@ -327,8 +324,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem linksToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip linksMenu;
-        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem overviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hourlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem longTermToolStripMenuItem;
@@ -336,6 +331,7 @@
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Timer updatePollTimer;
+        private System.Windows.Forms.LinkLabel creditLink;
     }
 }
 
