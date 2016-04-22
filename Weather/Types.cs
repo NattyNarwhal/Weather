@@ -193,10 +193,33 @@ namespace Weather
 
     }
 
+    public enum SymbolNumber
+    {
+        Sunny = 1,
+        Fair = 2,
+        PartlyCloudy = 3,
+        Cloudy = 4,
+        RainShowers = 5,
+        RainShowersWithThunder = 6,
+        SleetShowers = 7,
+        SnowShowers = 8,
+        Rain = 9,
+        HeavyRain = 10,
+        RainAndThunder = 11,
+        Sleet = 12,
+        Snow = 13,
+        SnowAndThunder = 14,
+        Fog = 15,
+        SleetShowersAndThunder = 20,
+        SnowShowersAndThunder = 21,
+        RainAndThunderAlternate = 22,
+        SleetAndThunder = 23
+    }
+
     public class TabularTimeSymbol
     {
         [XmlAttribute(AttributeName = "number")]
-        public int Number { get; set; }
+        public SymbolNumber Number { get; set; }
         [XmlAttribute(AttributeName = "numberEx")]
         public int NumberEx { get; set; }
         [XmlAttribute(AttributeName = "name")]
