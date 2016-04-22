@@ -47,7 +47,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cityBox.Location = new System.Drawing.Point(6, 19);
             this.cityBox.Name = "cityBox";
-            this.cityBox.Size = new System.Drawing.Size(251, 20);
+            this.cityBox.Size = new System.Drawing.Size(248, 20);
             this.cityBox.TabIndex = 0;
             // 
             // cancelButton
@@ -89,9 +89,10 @@
             // notificationEnableBox
             // 
             this.notificationEnableBox.AutoSize = true;
+            this.notificationEnableBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.notificationEnableBox.Location = new System.Drawing.Point(6, 19);
             this.notificationEnableBox.Name = "notificationEnableBox";
-            this.notificationEnableBox.Size = new System.Drawing.Size(164, 17);
+            this.notificationEnableBox.Size = new System.Drawing.Size(170, 18);
             this.notificationEnableBox.TabIndex = 5;
             this.notificationEnableBox.Text = "Use the notification area icon";
             this.notificationEnableBox.UseVisualStyleBackColor = true;
@@ -111,6 +112,7 @@
             // 
             this.locationGroup.Controls.Add(this.cityBox);
             this.locationGroup.Controls.Add(this.locationExplanation);
+            this.locationGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.locationGroup.Location = new System.Drawing.Point(12, 12);
             this.locationGroup.Name = "locationGroup";
             this.locationGroup.Size = new System.Drawing.Size(260, 94);
@@ -125,6 +127,7 @@
             this.displayGroup.Controls.Add(this.hourlyBox);
             this.displayGroup.Controls.Add(this.notificationEnableBox);
             this.displayGroup.Controls.Add(this.notificationExplanation);
+            this.displayGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.displayGroup.Location = new System.Drawing.Point(12, 112);
             this.displayGroup.Name = "displayGroup";
             this.displayGroup.Size = new System.Drawing.Size(260, 105);
@@ -135,9 +138,10 @@
             // hourlyBox
             // 
             this.hourlyBox.AutoSize = true;
+            this.hourlyBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.hourlyBox.Location = new System.Drawing.Point(6, 84);
             this.hourlyBox.Name = "hourlyBox";
-            this.hourlyBox.Size = new System.Drawing.Size(97, 17);
+            this.hourlyBox.Size = new System.Drawing.Size(103, 18);
             this.hourlyBox.TabIndex = 7;
             this.hourlyBox.Text = "Hourly forecast";
             this.hourlyBox.UseVisualStyleBackColor = true;
