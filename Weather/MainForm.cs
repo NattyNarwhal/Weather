@@ -112,6 +112,7 @@ namespace Weather
                     using (var g = Graphics.FromImage(b))
                     {
                         var pos = t.Temperature.Value > 0;
+                        var val = Math.Abs(t.Temperature.Value);
                         var font = new Font(FontFamily.GenericMonospace,
                             8, FontStyle.Regular);
                         // i think rectangles are 0-indexed
@@ -119,8 +120,8 @@ namespace Weather
 
                         g.FillEllipse(pos ? Brushes.White : Brushes.Black, r);
                         g.DrawEllipse(pos ? Pens.Black : Pens.White, r);
-                        g.DrawString(Math.Abs(t.Temperature.Value).ToString(),
-                            font, pos ? Brushes.Black : Brushes.White, 0, 0);
+                        g.DrawString(val.ToString(), font, pos ?
+                            Brushes.Black : Brushes.White, val > 9 ? 0 : 3, 1);
                     }
                     icon = Icon.FromHandle(b.GetHicon());
                     notifyIcon.Icon = icon;
