@@ -219,7 +219,7 @@ namespace Weather
     public class TabularTimeSymbol
     {
         [XmlAttribute(AttributeName = "number")]
-        public SymbolNumber Number { get; set; }
+        public int Number { get; set; }
         [XmlAttribute(AttributeName = "numberEx")]
         public int NumberEx { get; set; }
         [XmlAttribute(AttributeName = "name")]
