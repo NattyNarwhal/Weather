@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -104,6 +105,7 @@ namespace Weather
                     lvi.SubItems.Add(i.Precipitation.ToString());
                     lvi.SubItems.Add(i.Wind(descriptiveWind));
                     lvi.SubItems.Add(i.Pressure.ToString());
+                    lvi.Tag = i;
                     forecastBox.Items.Add(lvi);
                 }
             }
@@ -226,6 +228,28 @@ namespace Weather
         private void MainForm_Shown(object sender, EventArgs e)
         {
             RefreshData();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var grouped = forecastBox.SelectedItems
+                .Cast<ListViewItem>().GroupBy(x => x.Group);
+            var sb = new StringBuilder();
+            foreach (var g in grouped)
+            {
+                sb.AppendLine("# " + g.Key.Header);
+                foreach(var i in g)
+                {
+                    var t = (TabularTime)i.Tag;
+                    sb.AppendLine(String.Format("{0}-{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
+                        t.From.ToShortTimeString(), t.To.ToShortTimeString(),
+                        t.Symbol.Name, t.Temperature.ToString(),
+                        t.Precipitation.ToString(), t.Wind(descriptiveWind),
+                        t.Pressure.ToString()));
+                }
+            }
+            if (sb.Length > 0)
+                Clipboard.SetText(sb.ToString());
         }
     }
 }

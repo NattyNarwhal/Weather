@@ -56,9 +56,12 @@
             this.settingsButton = new System.Windows.Forms.Button();
             this.updatePollTimer = new System.Windows.Forms.Timer(this.components);
             this.creditLink = new System.Windows.Forms.LinkLabel();
+            this.listMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
+            this.listMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // refreshButton
@@ -86,6 +89,7 @@
             this.precipCol,
             this.windCol,
             this.pressureCol});
+            this.forecastBox.ContextMenuStrip = this.listMenu;
             this.forecastBox.Location = new System.Drawing.Point(12, 41);
             this.forecastBox.Name = "forecastBox";
             this.forecastBox.Size = new System.Drawing.Size(525, 261);
@@ -280,6 +284,21 @@
             this.creditLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.creditLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.creditLink_LinkClicked);
             // 
+            // listMenu
+            // 
+            this.listMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.listMenu.Name = "listMenu";
+            this.listMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.listMenu.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Text = "&Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,6 +317,7 @@
             this.statusStrip1.PerformLayout();
             this.linksMenu.ResumeLayout(false);
             this.notifyIconMenu.ResumeLayout(false);
+            this.listMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,6 +352,8 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Timer updatePollTimer;
         private System.Windows.Forms.LinkLabel creditLink;
+        private System.Windows.Forms.ContextMenuStrip listMenu;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }
 
