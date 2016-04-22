@@ -297,7 +297,6 @@
             this.Controls.Add(this.refreshButton);
             this.Name = "MainForm";
             this.Text = "Weather";
-            this.VisibleChanged += new System.EventHandler(this.MainForm_VisibleChanged);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.linksMenu.ResumeLayout(false);

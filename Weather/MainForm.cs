@@ -14,6 +14,8 @@ namespace Weather
     public partial class MainForm : Form
     {
         public string weatherLocation;
+        public bool useNotificationIcon;
+
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
         private Icon icon; // used for both notify + taskbar overlay
@@ -22,6 +24,7 @@ namespace Weather
         {
             InitializeComponent();
             weatherLocation = Properties.Settings.Default.WeatherLocation;
+            useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
             
             RefreshData();
         }
@@ -124,11 +127,27 @@ namespace Weather
                             Brushes.Black : Brushes.White, val > 9 ? 0 : 3, 1);
                     }
                     icon = Icon.FromHandle(b.GetHicon());
-                    notifyIcon.Icon = icon;
                 }
-                notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
-                    t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind());
-                notifyIcon.Visible = true;
+
+                if (useNotificationIcon)
+                {
+                    notifyIcon.Icon = icon;
+                    notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
+                        t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind());
+                    notifyIcon.Visible = true;
+                }
+                else if (!useNotificationIcon && Visible && TaskbarManager.IsPlatformSupported)
+                {
+                    try
+                    {
+                        TaskbarManager.Instance.SetOverlayIcon(icon,
+                            data.GetCurrentForecast().Temperature.ToString() ?? "");
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        // sometimes we can't get the tray icon...
+                    }
+                }
             }
         }
 
@@ -176,22 +195,6 @@ namespace Weather
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.Save();
                 RefreshData();
-            }
-        }
-
-        private void MainForm_VisibleChanged(object sender, EventArgs e)
-        {
-            if (icon != null && Visible && TaskbarManager.IsPlatformSupported)
-            {
-                try
-                {
-                    TaskbarManager.Instance.SetOverlayIcon(icon,
-                        data.GetCurrentForecast().Temperature.ToString() ?? "");
-                }
-                catch (InvalidOperationException)
-                {
-                    
-                }
             }
         }
 
