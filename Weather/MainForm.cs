@@ -102,22 +102,25 @@ namespace Weather
                     forecastBox.Items.Add(lvi);
                 }
             }
-            TabularTime t = data.GetCurrentForecast();
+
+            var t = data.GetCurrentForecast();
             if (t != null)
             {
                 //make icons
-                using (Bitmap b = new Bitmap(16, 16))
+                using (var b = new Bitmap(16, 16))
                 {
-                    using (Graphics g = Graphics.FromImage(b))
+                    using (var g = Graphics.FromImage(b))
                     {
-                        var pos = !(t.Temperature.Value < 0);
+                        var pos = t.Temperature.Value > 0;
+                        var font = new Font(FontFamily.GenericMonospace,
+                            8, FontStyle.Regular);
+                        // i think rectangles are 0-indexed
+                        var r = new Rectangle(0, 0, 15, 15);
 
-                        g.FillEllipse(pos ? Brushes.White : Brushes.Black,
-                            new Rectangle(0, 0, 15, 15));
-                        g.DrawEllipse(pos ? Pens.Black : Pens.White, new Rectangle(0, 0, 15, 15));
-                        g.DrawString(String.Format("{0}", Math.Abs(t.Temperature.Value)),
-                            new Font(FontFamily.GenericMonospace, 8, FontStyle.Regular),
-                            pos ? Brushes.Black : Brushes.White, new Point(-1, 0));
+                        g.FillEllipse(pos ? Brushes.White : Brushes.Black, r);
+                        g.DrawEllipse(pos ? Pens.Black : Pens.White, r);
+                        g.DrawString(Math.Abs(t.Temperature.Value).ToString(),
+                            font, pos ? Brushes.Black : Brushes.White, 0, 0);
                     }
                     icon = Icon.FromHandle(b.GetHicon());
                     notifyIcon.Icon = icon;
