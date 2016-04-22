@@ -30,6 +30,12 @@ namespace Weather
             set { hourlyBox.Checked = value; }
         }
 
+        public bool DescriptiveWind
+        {
+            get { return descriptiveWindBox.Checked; }
+            set { descriptiveWindBox.Checked = value; }
+        }
+
         public SettingsForm()
         {
             InitializeComponent();

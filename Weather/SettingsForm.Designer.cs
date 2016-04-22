@@ -41,6 +41,7 @@
             this.searchLocationLink = new System.Windows.Forms.LinkLabel();
             this.validateButton = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.descriptiveWindBox = new System.Windows.Forms.CheckBox();
             this.locationGroup.SuspendLayout();
             this.displayGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -60,7 +61,7 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cancelButton.Location = new System.Drawing.Point(259, 217);
+            this.cancelButton.Location = new System.Drawing.Point(259, 243);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 6;
@@ -72,7 +73,7 @@
             this.okButtton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButtton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButtton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.okButtton.Location = new System.Drawing.Point(178, 217);
+            this.okButtton.Location = new System.Drawing.Point(178, 243);
             this.okButtton.Name = "okButtton";
             this.okButtton.Size = new System.Drawing.Size(75, 23);
             this.okButtton.TabIndex = 5;
@@ -133,13 +134,14 @@
             // 
             this.displayGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.displayGroup.Controls.Add(this.descriptiveWindBox);
             this.displayGroup.Controls.Add(this.hourlyBox);
             this.displayGroup.Controls.Add(this.notificationEnableBox);
             this.displayGroup.Controls.Add(this.notificationExplanation);
             this.displayGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.displayGroup.Location = new System.Drawing.Point(12, 112);
             this.displayGroup.Name = "displayGroup";
-            this.displayGroup.Size = new System.Drawing.Size(322, 99);
+            this.displayGroup.Size = new System.Drawing.Size(322, 125);
             this.displayGroup.TabIndex = 8;
             this.displayGroup.TabStop = false;
             this.displayGroup.Text = "Display";
@@ -182,13 +184,24 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // descriptiveWindBox
+            // 
+            this.descriptiveWindBox.AutoSize = true;
+            this.descriptiveWindBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.descriptiveWindBox.Location = new System.Drawing.Point(6, 93);
+            this.descriptiveWindBox.Name = "descriptiveWindBox";
+            this.descriptiveWindBox.Size = new System.Drawing.Size(107, 18);
+            this.descriptiveWindBox.TabIndex = 7;
+            this.descriptiveWindBox.Text = "Descripive wind";
+            this.descriptiveWindBox.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.okButtton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(346, 252);
+            this.ClientSize = new System.Drawing.Size(346, 278);
             this.Controls.Add(this.displayGroup);
             this.Controls.Add(this.locationGroup);
             this.Controls.Add(this.okButtton);
@@ -220,5 +233,6 @@
         private System.Windows.Forms.LinkLabel searchLocationLink;
         private System.Windows.Forms.Button validateButton;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.CheckBox descriptiveWindBox;
     }
 }

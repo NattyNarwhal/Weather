@@ -58,5 +58,17 @@ namespace Weather.Properties {
                 this["Hourly"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DescriptiveWind {
+            get {
+                return ((bool)(this["DescriptiveWind"]));
+            }
+            set {
+                this["DescriptiveWind"] = value;
+            }
+        }
     }
 }

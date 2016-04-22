@@ -16,6 +16,7 @@ namespace Weather
         public string weatherLocation;
         public bool useNotificationIcon;
         public bool hourlyForecast;
+        public bool descriptiveWind;
 
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
@@ -27,6 +28,7 @@ namespace Weather
             weatherLocation = Properties.Settings.Default.WeatherLocation;
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
             hourlyForecast = Properties.Settings.Default.Hourly;
+            descriptiveWind = Properties.Settings.Default.DescriptiveWind;
         }
 
         public void RefreshData()
@@ -100,7 +102,7 @@ namespace Weather
                     lvi.SubItems.Add(i.Symbol.Name);
                     lvi.SubItems.Add(i.Temperature.ToString());
                     lvi.SubItems.Add(i.Precipitation.ToString());
-                    lvi.SubItems.Add(i.Wind());
+                    lvi.SubItems.Add(i.Wind(descriptiveWind));
                     lvi.SubItems.Add(i.Pressure.ToString());
                     forecastBox.Items.Add(lvi);
                 }
@@ -133,7 +135,7 @@ namespace Weather
                 {
                     notifyIcon.Icon = icon;
                     notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
-                        t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind());
+                        t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(descriptiveWind));
                     notifyIcon.Visible = true;
                 }
                 else if (!useNotificationIcon && Visible && TaskbarManager.IsPlatformSupported)
@@ -188,16 +190,20 @@ namespace Weather
             {
                 WeatherLocation = weatherLocation,
                 UseNotificationIcon = useNotificationIcon,
-                Hourly = hourlyForecast
+                Hourly = hourlyForecast,
+                DescriptiveWind = descriptiveWind
             };
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
                 weatherLocation = sf.WeatherLocation;
                 useNotificationIcon = sf.UseNotificationIcon;
                 hourlyForecast = sf.Hourly;
+                descriptiveWind = sf.DescriptiveWind;
+
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
                 Properties.Settings.Default.Hourly = hourlyForecast;
+                Properties.Settings.Default.DescriptiveWind = descriptiveWind;
                 Properties.Settings.Default.Save();
                 RefreshData();
             }
