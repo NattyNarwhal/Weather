@@ -75,9 +75,11 @@ namespace Weather
             sunLabel.Text = String.Format("The sun will rise at {0} and set at {1}.",
                 data.Sun.Rise.ToShortTimeString(), data.Sun.Set.ToShortTimeString());
             lastUpdateLabel.Text = String.Format("Last update: {0}",
-                data.Meta.LastUpdate);
+                data.Meta.LastUpdate.AddMinutes
+                (-data.Location.TimeZone.UTCOffsetMinutes).ToLocalTime());
             nextUpdateLabel.Text = String.Format("Next update: {0}",
-                data.Meta.NextUpdate);
+                data.Meta.NextUpdate.AddMinutes
+                (-data.Location.TimeZone.UTCOffsetMinutes).ToLocalTime());
 
             overviewToolStripMenuItem.Enabled = data.Links.Any(x => x.Id == "overview");
             hourlyToolStripMenuItem.Enabled = data.Links.Any(x => x.Id == "hourByHour");
