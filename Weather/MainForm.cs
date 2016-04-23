@@ -142,6 +142,7 @@ namespace Weather
                 }
                 else if (!useNotificationIcon && Visible && TaskbarManager.IsPlatformSupported)
                 {
+                    Visible = true;
                     notifyIcon.Visible = false;
                     try
                     {
