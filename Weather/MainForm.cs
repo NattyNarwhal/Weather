@@ -58,7 +58,10 @@ namespace Weather
 
         public void FlashError(string message)
         {
-            MessageBox.Show(this, message, "Weather", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            sunLabel.Text = message;
+            if (notifyIcon.Visible)
+                notifyIcon.ShowBalloonTip(0, "Error", message, ToolTipIcon.Error);
+            Icon = Properties.Resources.Error;
         }
 
         public void SyncState()
@@ -68,6 +71,7 @@ namespace Weather
 
             Text = data.Location.ToString();
             creditLink.Text = data.Credit.Link.Text;
+
             sunLabel.Text = String.Format("The sun will rise at {0} and set at {1}.",
                 data.Sun.Rise.ToShortTimeString(), data.Sun.Set.ToShortTimeString());
             lastUpdateLabel.Text = String.Format("Last update: {0}",

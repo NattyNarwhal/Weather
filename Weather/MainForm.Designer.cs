@@ -37,6 +37,8 @@
             this.precipCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.windCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pressureCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sunLabel = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lastUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -56,12 +58,10 @@
             this.settingsButton = new System.Windows.Forms.Button();
             this.updatePollTimer = new System.Windows.Forms.Timer(this.components);
             this.creditLink = new System.Windows.Forms.LinkLabel();
-            this.listMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
-            this.listMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // refreshButton
@@ -127,6 +127,21 @@
             this.pressureCol.Text = "Pressure";
             this.pressureCol.Width = 70;
             // 
+            // listMenu
+            // 
+            this.listMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.listMenu.Name = "listMenu";
+            this.listMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.listMenu.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "&Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // sunLabel
             // 
             this.sunLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -181,6 +196,7 @@
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
+            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.linksMenu.Size = new System.Drawing.Size(132, 92);
             // 
@@ -284,21 +300,6 @@
             this.creditLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.creditLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.creditLink_LinkClicked);
             // 
-            // listMenu
-            // 
-            this.listMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem});
-            this.listMenu.Name = "listMenu";
-            this.listMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.listMenu.Size = new System.Drawing.Size(103, 26);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copyToolStripMenuItem.Text = "&Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,11 +314,11 @@
             this.Name = "MainForm";
             this.Text = "Weather";
             this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this.listMenu.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.linksMenu.ResumeLayout(false);
             this.notifyIconMenu.ResumeLayout(false);
-            this.listMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
