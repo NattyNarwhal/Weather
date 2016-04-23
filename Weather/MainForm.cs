@@ -130,7 +130,47 @@ namespace Weather
                         g.DrawString(val.ToString(), font, pos ?
                             Brushes.Black : Brushes.White, val > 9 ? 0 : 3, 1);
                     }
+                    // TODO: configure if to use the badge or symbol for each
+                    // place it is in use
                     icon = Icon.FromHandle(b.GetHicon());
+                }
+
+                switch ((SymbolNumber)t.Symbol.Number)
+                {
+                    case SymbolNumber.Sunny:
+                        Icon = Properties.Resources.Clear;
+                        break;
+                    case SymbolNumber.Fair:
+                    case SymbolNumber.PartlyCloudy:
+                        Icon = Properties.Resources.Partly;
+                        break;
+                    case SymbolNumber.Cloudy:   
+                    case SymbolNumber.Fog:
+                        Icon = Properties.Resources.Fair;
+                        break;
+                    case SymbolNumber.Rain:
+                    case SymbolNumber.Sleet:
+                    case SymbolNumber.SleetShowers:
+                        Icon = Properties.Resources.Rain;
+                        break;
+                    case SymbolNumber.RainShowers:
+                    case SymbolNumber.HeavyRain:
+                        Icon = Properties.Resources.Showers;
+                        break;
+                    case SymbolNumber.Snow:
+                    case SymbolNumber.SnowShowers:
+                        Icon = Properties.Resources.Snow;
+                        break;
+                    case SymbolNumber.RainAndThunder:
+                    case SymbolNumber.RainAndThunderAlternate:
+                    case SymbolNumber.RainShowersWithThunder:
+                    case SymbolNumber.SleetAndThunder:
+                    case SymbolNumber.SleetShowersAndThunder:
+                    case SymbolNumber.SnowAndThunder:
+                    case SymbolNumber.SnowShowersAndThunder:
+                        Icon = Properties.Resources.Thunder;
+                        break;
+                    default: break;
                 }
 
                 if (useNotificationIcon)

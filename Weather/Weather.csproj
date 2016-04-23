@@ -102,6 +102,30 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Partly.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Showers.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Snow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thunder.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clear.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fair.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
