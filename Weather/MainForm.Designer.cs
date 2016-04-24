@@ -78,7 +78,6 @@
             // 
             // forecastBox
             // 
-            this.forecastBox.AllowColumnReorder = true;
             this.forecastBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -90,8 +89,10 @@
             this.windCol,
             this.pressureCol});
             this.forecastBox.ContextMenuStrip = this.listMenu;
+            this.forecastBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.forecastBox.Location = new System.Drawing.Point(12, 41);
             this.forecastBox.Name = "forecastBox";
+            this.forecastBox.ShowItemToolTips = true;
             this.forecastBox.Size = new System.Drawing.Size(525, 261);
             this.forecastBox.TabIndex = 0;
             this.forecastBox.UseCompatibleStateImageBehavior = false;
@@ -196,7 +197,7 @@
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
-            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
+            this.linksMenu.OwnerItem = this.linksButton;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.linksMenu.Size = new System.Drawing.Size(132, 92);
             // 
