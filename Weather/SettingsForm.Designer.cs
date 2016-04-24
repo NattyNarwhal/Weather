@@ -56,7 +56,6 @@
             this.cityBox.Name = "cityBox";
             this.cityBox.Size = new System.Drawing.Size(215, 20);
             this.cityBox.TabIndex = 0;
-            this.cityBox.TextChanged += new System.EventHandler(this.cityBox_TextChanged);
             // 
             // cancelButton
             // 

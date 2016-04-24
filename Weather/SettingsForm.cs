@@ -12,8 +12,6 @@ namespace Weather
 {
     public partial class SettingsForm : Form
     {
-        List<SearchResult> autocompleteResults;
-
         public string WeatherLocation
         {
             get { return cityBox.Text; }
@@ -53,11 +51,6 @@ namespace Weather
             errorProvider1.SetError(cityBox, !Fetcher.LocationExists(cityBox.Text) ?
                 "The location could not be found." : String.Empty);
             okButtton.Enabled = errorProvider1.GetError(cityBox) == String.Empty;
-        }
-
-        private void cityBox_TextChanged(object sender, EventArgs e)
-        {
-            autocompleteResults = Fetcher.GetCompletions(cityBox.Text).ToList();
         }
     }
 }
