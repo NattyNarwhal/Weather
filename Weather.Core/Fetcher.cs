@@ -19,11 +19,15 @@ namespace Weather
         const string normalForecast = "forecast";
         const string hourlyForecast = "forecast_hour_by_hour";
 
-        static WebClient wc = new WebClient();
+        static CookieAwareWebClient wc = new CookieAwareWebClient();
 
         static Fetcher()
         {
             wc.Headers.Add(HttpRequestHeader.UserAgent, ua);
+            var jar = new CookieContainer();
+            jar.Add(new Cookie("l", "en", "/", "yr.no"));
+            jar.Add(new Cookie("brp", "spr=eng", "/", "yr.no"));
+            wc.CookieContainer = jar;
         }
 
         static string GetUrl(string location, bool hourly)
