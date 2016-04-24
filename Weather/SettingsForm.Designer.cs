@@ -36,12 +36,12 @@
             this.notificationEnableBox = new System.Windows.Forms.CheckBox();
             this.notificationExplanation = new System.Windows.Forms.Label();
             this.locationGroup = new System.Windows.Forms.GroupBox();
-            this.displayGroup = new System.Windows.Forms.GroupBox();
-            this.hourlyBox = new System.Windows.Forms.CheckBox();
             this.searchLocationLink = new System.Windows.Forms.LinkLabel();
             this.validateButton = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.displayGroup = new System.Windows.Forms.GroupBox();
             this.descriptiveWindBox = new System.Windows.Forms.CheckBox();
+            this.hourlyBox = new System.Windows.Forms.CheckBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.locationGroup.SuspendLayout();
             this.displayGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -51,10 +51,12 @@
             // 
             this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cityBox.Location = new System.Drawing.Point(6, 19);
             this.cityBox.Name = "cityBox";
             this.cityBox.Size = new System.Drawing.Size(215, 20);
             this.cityBox.TabIndex = 0;
+            this.cityBox.TextChanged += new System.EventHandler(this.cityBox_TextChanged);
             // 
             // cancelButton
             // 
@@ -130,33 +132,6 @@
             this.locationGroup.TabStop = false;
             this.locationGroup.Text = "Location";
             // 
-            // displayGroup
-            // 
-            this.displayGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.displayGroup.Controls.Add(this.descriptiveWindBox);
-            this.displayGroup.Controls.Add(this.hourlyBox);
-            this.displayGroup.Controls.Add(this.notificationEnableBox);
-            this.displayGroup.Controls.Add(this.notificationExplanation);
-            this.displayGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.displayGroup.Location = new System.Drawing.Point(12, 112);
-            this.displayGroup.Name = "displayGroup";
-            this.displayGroup.Size = new System.Drawing.Size(322, 125);
-            this.displayGroup.TabIndex = 8;
-            this.displayGroup.TabStop = false;
-            this.displayGroup.Text = "Display";
-            // 
-            // hourlyBox
-            // 
-            this.hourlyBox.AutoSize = true;
-            this.hourlyBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.hourlyBox.Location = new System.Drawing.Point(6, 74);
-            this.hourlyBox.Name = "hourlyBox";
-            this.hourlyBox.Size = new System.Drawing.Size(103, 18);
-            this.hourlyBox.TabIndex = 4;
-            this.hourlyBox.Text = "Hourly forecast";
-            this.hourlyBox.UseVisualStyleBackColor = true;
-            // 
             // searchLocationLink
             // 
             this.searchLocationLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -180,9 +155,21 @@
             this.validateButton.UseVisualStyleBackColor = true;
             this.validateButton.Click += new System.EventHandler(this.validateButton_Click);
             // 
-            // errorProvider1
+            // displayGroup
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.displayGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.displayGroup.Controls.Add(this.descriptiveWindBox);
+            this.displayGroup.Controls.Add(this.hourlyBox);
+            this.displayGroup.Controls.Add(this.notificationEnableBox);
+            this.displayGroup.Controls.Add(this.notificationExplanation);
+            this.displayGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.displayGroup.Location = new System.Drawing.Point(12, 112);
+            this.displayGroup.Name = "displayGroup";
+            this.displayGroup.Size = new System.Drawing.Size(322, 125);
+            this.displayGroup.TabIndex = 8;
+            this.displayGroup.TabStop = false;
+            this.displayGroup.Text = "Display";
             // 
             // descriptiveWindBox
             // 
@@ -194,6 +181,21 @@
             this.descriptiveWindBox.TabIndex = 7;
             this.descriptiveWindBox.Text = "Descripive wind";
             this.descriptiveWindBox.UseVisualStyleBackColor = true;
+            // 
+            // hourlyBox
+            // 
+            this.hourlyBox.AutoSize = true;
+            this.hourlyBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.hourlyBox.Location = new System.Drawing.Point(6, 74);
+            this.hourlyBox.Name = "hourlyBox";
+            this.hourlyBox.Size = new System.Drawing.Size(103, 18);
+            this.hourlyBox.TabIndex = 4;
+            this.hourlyBox.Text = "Hourly forecast";
+            this.hourlyBox.UseVisualStyleBackColor = true;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // SettingsForm
             // 
