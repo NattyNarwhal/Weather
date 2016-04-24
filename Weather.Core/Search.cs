@@ -12,5 +12,10 @@ namespace Weather
         public string Url { get; set; }
         public string Metadata { get; set; }
         public string CountryCode { get; set; }
+
+        public override string ToString()
+        {
+            return Url;
+        }
     }
 }

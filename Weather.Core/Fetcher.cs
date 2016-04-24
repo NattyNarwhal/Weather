@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Weather
 {
@@ -14,6 +14,7 @@ namespace Weather
         const string ua = "https://github.com/NattyNarwhal/Weather";
 
         const string yrnoQueries = "http://www.yr.no/_/websvc/jsonforslagsboks.aspx?s={0}&s1t=&s1i=&s2t=&s2i=";
+        const string querySlicingRegex = @"\/(?:place|sted)\/(\w*\/\w*\/\w*)\/?";
 
         const string yrnoBase = "http://www.yr.no/place/{0}/{1}.xml";
         const string normalForecast = "forecast";
@@ -82,7 +83,8 @@ namespace Weather
                         yield return new SearchResult()
                         {
                             Name = (string)result[0],
-                            Url = (string)result[1],
+                            Url = Regex.Match((string)result[1],
+                                querySlicingRegex).Value,
                             Metadata = (string)result[2],
                             CountryCode = (string)result[3]
                         };
