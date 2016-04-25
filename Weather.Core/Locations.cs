@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoreLinq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,8 @@ namespace Weather
 
         public static IEnumerable<AvailableLocation> GetList()
         {
-            return FromTabulated(Core.Properties.Resources.locations);
+            return FromTabulated(Core.Properties.Resources.locations)
+                .DistinctBy(x => x.GeonamesId);
         }
 
         public static IEnumerable<AvailableLocation> FromTabulated(string tabulatedData)
