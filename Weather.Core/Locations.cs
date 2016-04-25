@@ -18,6 +18,12 @@ namespace Weather
         public int Altitude { get; set; }
         public string XmlUrl { get; set; }
 
+        public override string ToString()
+        {
+            return String.Format("{0}, {1} ({2})",
+                Name, Country, Type);
+        }
+
         // File for all locations:
         // http://fil.nrk.no/yr/viktigestader/verda.txt
         // More info, including Norway-specific ones:
@@ -39,6 +45,7 @@ namespace Weather
         {
             foreach (var item in tabulatedData)
             {
+                if (string.IsNullOrWhiteSpace(item)) continue;
                 var subitem = item.Split('\t');
                 yield return new AvailableLocation()
                 {
@@ -46,12 +53,13 @@ namespace Weather
                     Name = subitem[3],
                     GeonamesId = int.Parse(subitem[4]),
                     Type = subitem[7],
-                    Country = subitem[9],
-                    Population = int.Parse(subitem[10]),
-                    Latitude = subitem[11],
-                    Longitude = subitem[12],
-                    Altitude = int.Parse(subitem[13]),
-                    XmlUrl = subitem[14]
+                    Country = subitem[10],
+                    Population = int.Parse(subitem[11]),
+                    Latitude = subitem[12],
+                    Longitude = subitem[13],
+                    Altitude = String.IsNullOrEmpty(subitem[14]) ?
+                        0 : int.Parse(subitem[14]),
+                    XmlUrl = subitem[17].Trim()
                 };
             }
         }
