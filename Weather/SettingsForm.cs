@@ -16,8 +16,7 @@ namespace Weather
         {
             get
             {
-                return ((SearchResult)cityBox.SelectedItem)?.Url
-                    ?? ((SearchResult)cityBox.Items[0])?.Url
+                return ((AvailableLocation)cityBox.SelectedItem)?.XmlUrl
                     ?? cityBox.Text;
             }
             set { cityBox.Text = value; }
@@ -44,22 +43,8 @@ namespace Weather
         public SettingsForm()
         {
             InitializeComponent();
-        }
 
-        private void cityBox_TextChanged(object sender, EventArgs e)
-        {
-            // We only start with 5 items as to produce more useful
-            // results and avoid hammering the server.
-            if (cityBox.Text.Length > 4)
-            {
-                // If we remove the first item, that's what the user is
-                // currently typing, and bad things will then happen.
-                while (cityBox.Items.Count > 1)
-                {
-                    cityBox.Items.RemoveAt(cityBox.Items.Count - 1);
-                }
-                cityBox.Items.AddRange(Fetcher.GetCompletions(cityBox.Text).ToArray());
-            }
+            cityBox.Items.AddRange(AvailableLocation.GetList().ToArray());
         }
     }
 }

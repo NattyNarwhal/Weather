@@ -34,10 +34,10 @@
             this.notificationEnableBox = new System.Windows.Forms.CheckBox();
             this.notificationExplanation = new System.Windows.Forms.Label();
             this.locationGroup = new System.Windows.Forms.GroupBox();
+            this.cityBox = new System.Windows.Forms.ComboBox();
             this.displayGroup = new System.Windows.Forms.GroupBox();
             this.descriptiveWindBox = new System.Windows.Forms.CheckBox();
             this.hourlyBox = new System.Windows.Forms.CheckBox();
-            this.cityBox = new System.Windows.Forms.ComboBox();
             this.locationGroup.SuspendLayout();
             this.displayGroup.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +115,18 @@
             this.locationGroup.TabStop = false;
             this.locationGroup.Text = "Location";
             // 
+            // cityBox
+            // 
+            this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cityBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cityBox.FormattingEnabled = true;
+            this.cityBox.Location = new System.Drawing.Point(6, 19);
+            this.cityBox.Name = "cityBox";
+            this.cityBox.Size = new System.Drawing.Size(310, 21);
+            this.cityBox.TabIndex = 5;
+            // 
             // displayGroup
             // 
             this.displayGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -152,19 +164,6 @@
             this.hourlyBox.TabIndex = 4;
             this.hourlyBox.Text = "Hourly forecast";
             this.hourlyBox.UseVisualStyleBackColor = true;
-            // 
-            // cityBox
-            // 
-            this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cityBox.FormattingEnabled = true;
-            this.cityBox.Location = new System.Drawing.Point(6, 19);
-            this.cityBox.Name = "cityBox";
-            this.cityBox.Size = new System.Drawing.Size(310, 21);
-            this.cityBox.TabIndex = 5;
-            this.cityBox.TextChanged += new System.EventHandler(this.cityBox_TextChanged);
             // 
             // SettingsForm
             // 
