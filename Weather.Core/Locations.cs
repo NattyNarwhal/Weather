@@ -8,17 +8,25 @@ namespace Weather
 {
     public class AvailableLocation
     {
-        const string querySlicingRegex = @"\/(?:place|sted)\/(\w*\/\w*\/\w*)\/?";
+        const string querySlicingRegex = @"\/(?:place|sted|stad)\/(\w*\/\w*\/\w*)\/?";
 
         public string CountryCode { get; set; }
+        public string NameNynorsk { get; set; }
+        public string NameBokmal { get; set; }
         public string Name { get; set; }
         public int GeonamesId { get; set; }
+        public string TypeNynorsk { get; set; }
+        public string TypeBokmal { get; set; }
         public string Type { get; set; }
+        public string CountryNynorsk { get; set; }
+        public string CountryBokmal { get; set; }
         public string Country { get; set; }
         public int Population { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public int Altitude { get; set; }
+        public string XmlUrlNynorsk { get; set; }
+        public string XmlUrlBokmal { get; set; }
         public string XmlUrl { get; set; }
 
         public override string ToString()
@@ -58,15 +66,23 @@ namespace Weather
                 yield return new AvailableLocation()
                 {
                     CountryCode = subitem[0],
+                    NameNynorsk = subitem[1],
+                    NameBokmal = subitem[2],
                     Name = subitem[3],
                     GeonamesId = int.Parse(subitem[4]),
+                    TypeNynorsk = subitem[5],
+                    TypeBokmal = subitem[6],
                     Type = subitem[7],
+                    CountryNynorsk = subitem[8],
+                    CountryBokmal = subitem[9],
                     Country = subitem[10],
                     Population = int.Parse(subitem[11]),
                     Latitude = subitem[12],
                     Longitude = subitem[13],
                     Altitude = String.IsNullOrEmpty(subitem[14]) ?
                         0 : int.Parse(subitem[14]),
+                    XmlUrlNynorsk = subitem[15],
+                    XmlUrlBokmal = subitem[16],
                     XmlUrl = subitem[17].Trim()
                 };
             }
