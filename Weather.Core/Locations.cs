@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Weather
 {
-    public class Location
+    public class AvailableLocation
     {
         public string CountryCode { get; set; }
         public string Name { get; set; }
@@ -22,16 +22,25 @@ namespace Weather
         // http://fil.nrk.no/yr/viktigestader/verda.txt
         // More info, including Norway-specific ones:
         // http://om.yr.no/verdata/xml/
-        public static IEnumerable<Location> FromTabulated(string tabulatedData)
+
+        public static IEnumerable<AvailableLocation> GetList()
+        {
+            return FromTabulated(Core.Properties.Resources.locations);
+        }
+
+        public static IEnumerable<AvailableLocation> FromTabulated(string tabulatedData)
         {
             // first item is a header, so skip it
-            var split = tabulatedData.Split
-                (Environment.NewLine.ToCharArray()).Skip(1);
+            return FromTabulated(tabulatedData.Split
+                (Environment.NewLine.ToCharArray()).Skip(1).ToArray());
+        }
 
-            foreach (var item in split)
+        public static IEnumerable<AvailableLocation> FromTabulated(string[] tabulatedData)
+        {
+            foreach (var item in tabulatedData)
             {
                 var subitem = item.Split('\t');
-                yield return new Location()
+                yield return new AvailableLocation()
                 {
                     CountryCode = subitem[0],
                     Name = subitem[3],
