@@ -32,7 +32,7 @@ namespace Weather
         {
             // first item is a header, so skip it
             return FromTabulated(tabulatedData.Split
-                (Environment.NewLine.ToCharArray()).Skip(1).ToArray());
+                ('\n').Skip(1).ToArray());
         }
 
         public static IEnumerable<AvailableLocation> FromTabulated(string[] tabulatedData)
