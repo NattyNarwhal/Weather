@@ -157,7 +157,7 @@
             // 
             this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cityBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityBox.FormattingEnabled = true;
             this.cityBox.Location = new System.Drawing.Point(6, 19);
