@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.cityBox = new System.Windows.Forms.TextBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButtton = new System.Windows.Forms.Button();
             this.locationExplanation = new System.Windows.Forms.Label();
@@ -42,20 +41,11 @@
             this.descriptiveWindBox = new System.Windows.Forms.CheckBox();
             this.hourlyBox = new System.Windows.Forms.CheckBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cityBox = new System.Windows.Forms.ComboBox();
             this.locationGroup.SuspendLayout();
             this.displayGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cityBox
-            // 
-            this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.cityBox.Location = new System.Drawing.Point(6, 19);
-            this.cityBox.Name = "cityBox";
-            this.cityBox.Size = new System.Drawing.Size(215, 20);
-            this.cityBox.TabIndex = 0;
             // 
             // cancelButton
             // 
@@ -119,9 +109,9 @@
             // 
             this.locationGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.locationGroup.Controls.Add(this.cityBox);
             this.locationGroup.Controls.Add(this.searchLocationLink);
             this.locationGroup.Controls.Add(this.validateButton);
-            this.locationGroup.Controls.Add(this.cityBox);
             this.locationGroup.Controls.Add(this.locationExplanation);
             this.locationGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.locationGroup.Location = new System.Drawing.Point(12, 12);
@@ -196,6 +186,19 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // cityBox
+            // 
+            this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cityBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cityBox.FormattingEnabled = true;
+            this.cityBox.Location = new System.Drawing.Point(6, 19);
+            this.cityBox.Name = "cityBox";
+            this.cityBox.Size = new System.Drawing.Size(210, 21);
+            this.cityBox.TabIndex = 5;
+            this.cityBox.TextChanged += new System.EventHandler(this.cityBox_TextChanged);
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.okButtton;
@@ -224,7 +227,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox cityBox;
         private System.Windows.Forms.Button okButtton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label locationExplanation;
@@ -237,5 +239,6 @@
         private System.Windows.Forms.Button validateButton;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.CheckBox descriptiveWindBox;
+        private System.Windows.Forms.ComboBox cityBox;
     }
 }

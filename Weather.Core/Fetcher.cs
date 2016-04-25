@@ -84,7 +84,7 @@ namespace Weather
                         {
                             Name = (string)result[0],
                             Url = Regex.Match((string)result[1],
-                                querySlicingRegex).Value,
+                                querySlicingRegex).Groups[1].Value,
                             Metadata = (string)result[2],
                             CountryCode = (string)result[3]
                         };

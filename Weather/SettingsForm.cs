@@ -14,7 +14,11 @@ namespace Weather
     {
         public string WeatherLocation
         {
-            get { return cityBox.Text; }
+            get
+            {
+                return ((SearchResult)cityBox.SelectedItem)?.Url
+                    ?? cityBox.Text;
+            }
             set { cityBox.Text = value; }
         }
 
@@ -51,6 +55,18 @@ namespace Weather
             errorProvider1.SetError(cityBox, !Fetcher.LocationExists(cityBox.Text) ?
                 "The location could not be found." : String.Empty);
             okButtton.Enabled = errorProvider1.GetError(cityBox) == String.Empty;
+        }
+
+        private void cityBox_TextChanged(object sender, EventArgs e)
+        {
+            if (cityBox.Text.Length > 4)
+            {
+                while (cityBox.Items.Count > 1)
+                {
+                    cityBox.Items.RemoveAt(cityBox.Items.Count - 1);
+                }
+                cityBox.Items.AddRange(Fetcher.GetCompletions(cityBox.Text).ToArray());
+            }
         }
     }
 }
