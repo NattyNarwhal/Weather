@@ -49,7 +49,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Search.cs" />
     <Compile Include="Types.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
