@@ -184,6 +184,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Settings";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.locationGroup.ResumeLayout(false);
             this.displayGroup.ResumeLayout(false);
             this.displayGroup.PerformLayout();

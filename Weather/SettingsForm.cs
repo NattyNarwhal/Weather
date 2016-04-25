@@ -43,8 +43,14 @@ namespace Weather
         public SettingsForm()
         {
             InitializeComponent();
+        }
 
-            cityBox.Items.AddRange(AvailableLocation.GetList().ToArray());
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            var list = AvailableLocation.GetList().ToArray();
+
+            cityBox.Items.AddRange(list);
+            cityBox.SelectedItem = list.Where(x => x.XmlUrl.Contains(WeatherLocation)).FirstOrDefault();
         }
     }
 }
