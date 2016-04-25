@@ -53,8 +53,8 @@ namespace Weather
         public static IEnumerable<AvailableLocation> FromTabulated(string tabulatedData)
         {
             // first item is a header, so skip it
-            return FromTabulated(tabulatedData.Split
-                ('\n').Skip(1).ToArray());
+            return FromTabulated(Regex.Split(tabulatedData,
+                Environment.NewLine).Skip(1).ToArray());
         }
 
         public static IEnumerable<AvailableLocation> FromTabulated(string[] tabulatedData)
@@ -83,7 +83,7 @@ namespace Weather
                         0 : int.Parse(subitem[14]),
                     XmlUrlNynorsk = subitem[15],
                     XmlUrlBokmal = subitem[16],
-                    XmlUrl = subitem[17].Trim()
+                    XmlUrl = subitem[17]
                 };
             }
         }
