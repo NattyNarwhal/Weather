@@ -17,6 +17,7 @@ namespace Weather
             get
             {
                 return ((SearchResult)cityBox.SelectedItem)?.Url
+                    ?? ((SearchResult)cityBox.Items[0])?.Url
                     ?? cityBox.Text;
             }
             set { cityBox.Text = value; }
