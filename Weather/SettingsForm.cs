@@ -45,22 +45,14 @@ namespace Weather
             InitializeComponent();
         }
 
-        private void searchLocationLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://www.yr.no/soek/soek.aspx");
-        }
-
-        private void validateButton_Click(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(cityBox, !Fetcher.LocationExists(cityBox.Text) ?
-                "The location could not be found." : String.Empty);
-            okButtton.Enabled = errorProvider1.GetError(cityBox) == String.Empty;
-        }
-
         private void cityBox_TextChanged(object sender, EventArgs e)
         {
+            // We only start with 5 items as to produce more useful
+            // results and avoid hammering the server.
             if (cityBox.Text.Length > 4)
             {
+                // If we remove the first item, that's what the user is
+                // currently typing, and bad things will then happen.
                 while (cityBox.Items.Count > 1)
                 {
                     cityBox.Items.RemoveAt(cityBox.Items.Count - 1);

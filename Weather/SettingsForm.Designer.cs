@@ -28,23 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButtton = new System.Windows.Forms.Button();
             this.locationExplanation = new System.Windows.Forms.Label();
             this.notificationEnableBox = new System.Windows.Forms.CheckBox();
             this.notificationExplanation = new System.Windows.Forms.Label();
             this.locationGroup = new System.Windows.Forms.GroupBox();
-            this.searchLocationLink = new System.Windows.Forms.LinkLabel();
-            this.validateButton = new System.Windows.Forms.Button();
             this.displayGroup = new System.Windows.Forms.GroupBox();
             this.descriptiveWindBox = new System.Windows.Forms.CheckBox();
             this.hourlyBox = new System.Windows.Forms.CheckBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.cityBox = new System.Windows.Forms.ComboBox();
             this.locationGroup.SuspendLayout();
             this.displayGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -76,12 +71,13 @@
             this.locationExplanation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.locationExplanation.Location = new System.Drawing.Point(6, 42);
+            this.locationExplanation.Location = new System.Drawing.Point(6, 43);
             this.locationExplanation.Name = "locationExplanation";
-            this.locationExplanation.Size = new System.Drawing.Size(310, 31);
+            this.locationExplanation.Size = new System.Drawing.Size(310, 48);
             this.locationExplanation.TabIndex = 4;
-            this.locationExplanation.Text = "You can get the path for your city (like \"Canada/Ontario/Toronto\") by looking it " +
-    "up on yr.no.";
+            this.locationExplanation.Text = "You can get the path for your city by entering its URL section manually (such as " +
+    "\"Canada/Ontario/Toronto\") or searching for it within the combo box. Suggestions " +
+    "will be filled as you type.";
             // 
             // notificationEnableBox
             // 
@@ -110,8 +106,6 @@
             this.locationGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locationGroup.Controls.Add(this.cityBox);
-            this.locationGroup.Controls.Add(this.searchLocationLink);
-            this.locationGroup.Controls.Add(this.validateButton);
             this.locationGroup.Controls.Add(this.locationExplanation);
             this.locationGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.locationGroup.Location = new System.Drawing.Point(12, 12);
@@ -120,29 +114,6 @@
             this.locationGroup.TabIndex = 7;
             this.locationGroup.TabStop = false;
             this.locationGroup.Text = "Location";
-            // 
-            // searchLocationLink
-            // 
-            this.searchLocationLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchLocationLink.AutoSize = true;
-            this.searchLocationLink.Location = new System.Drawing.Point(8, 73);
-            this.searchLocationLink.Name = "searchLocationLink";
-            this.searchLocationLink.Size = new System.Drawing.Size(101, 13);
-            this.searchLocationLink.TabIndex = 2;
-            this.searchLocationLink.TabStop = true;
-            this.searchLocationLink.Text = "Search for locations";
-            this.searchLocationLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.searchLocationLink_LinkClicked);
-            // 
-            // validateButton
-            // 
-            this.validateButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.validateButton.Location = new System.Drawing.Point(235, 17);
-            this.validateButton.Name = "validateButton";
-            this.validateButton.Size = new System.Drawing.Size(75, 23);
-            this.validateButton.TabIndex = 1;
-            this.validateButton.Text = "&Validate";
-            this.validateButton.UseVisualStyleBackColor = true;
-            this.validateButton.Click += new System.EventHandler(this.validateButton_Click);
             // 
             // displayGroup
             // 
@@ -182,10 +153,6 @@
             this.hourlyBox.Text = "Hourly forecast";
             this.hourlyBox.UseVisualStyleBackColor = true;
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // cityBox
             // 
             this.cityBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -195,7 +162,7 @@
             this.cityBox.FormattingEnabled = true;
             this.cityBox.Location = new System.Drawing.Point(6, 19);
             this.cityBox.Name = "cityBox";
-            this.cityBox.Size = new System.Drawing.Size(210, 21);
+            this.cityBox.Size = new System.Drawing.Size(310, 21);
             this.cityBox.TabIndex = 5;
             this.cityBox.TextChanged += new System.EventHandler(this.cityBox_TextChanged);
             // 
@@ -218,10 +185,8 @@
             this.ShowInTaskbar = false;
             this.Text = "Settings";
             this.locationGroup.ResumeLayout(false);
-            this.locationGroup.PerformLayout();
             this.displayGroup.ResumeLayout(false);
             this.displayGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -235,9 +200,6 @@
         private System.Windows.Forms.GroupBox locationGroup;
         private System.Windows.Forms.GroupBox displayGroup;
         private System.Windows.Forms.CheckBox hourlyBox;
-        private System.Windows.Forms.LinkLabel searchLocationLink;
-        private System.Windows.Forms.Button validateButton;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.CheckBox descriptiveWindBox;
         private System.Windows.Forms.ComboBox cityBox;
     }
