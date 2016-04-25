@@ -121,6 +121,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cityBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cityBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cityBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cityBox.FormattingEnabled = true;
             this.cityBox.Location = new System.Drawing.Point(6, 19);
             this.cityBox.Name = "cityBox";
