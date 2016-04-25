@@ -22,7 +22,7 @@ namespace Weather.Core
         // http://fil.nrk.no/yr/viktigestader/verda.txt
         // More info, including Norway-specific ones:
         // http://om.yr.no/verdata/xml/
-        public IEnumerable<Location> FromTabulated(string tabulatedData)
+        public static IEnumerable<Location> FromTabulated(string tabulatedData)
         {
             // first item is a header, so skip it
             var split = tabulatedData.Split
