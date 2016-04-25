@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Weather
 {
     public class AvailableLocation
     {
+        const string querySlicingRegex = @"\/(?:place|sted)\/(\w*\/\w*\/\w*)\/?";
+
         public string CountryCode { get; set; }
         public string Name { get; set; }
         public int GeonamesId { get; set; }
@@ -22,6 +25,11 @@ namespace Weather
         {
             return String.Format("{0}, {1} ({2})",
                 Name, Country, Type);
+        }
+
+        public string UrlSubsection()
+        {
+            return Regex.Match(XmlUrl, querySlicingRegex).Groups[1].Value;
         }
 
         // File for all locations:
