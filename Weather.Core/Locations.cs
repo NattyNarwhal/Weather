@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Weather.Core
+namespace Weather
 {
     public class Location
     {
