@@ -20,6 +20,7 @@ namespace Weather
         public bool descriptiveWind;
         public bool symbolAsWindowIcon;
         public bool symbolAsNotificationIcon;
+        public ServiceLanguage lang;
 
         public WeatherData data;
         public Fetcher fetcher;
@@ -36,6 +37,9 @@ namespace Weather
             descriptiveWind = Properties.Settings.Default.DescriptiveWind;
             symbolAsNotificationIcon = Properties.Settings.Default.SymbolNotificationIcon;
             symbolAsWindowIcon = Properties.Settings.Default.SymbolWindowIcon;
+            lang = Properties.Settings.Default.Language;
+
+            fetcher.Language = lang;
         }
 
         public Icon GetSymbolIcon(TabularTimeSymbol ts)
@@ -90,10 +94,10 @@ namespace Weather
             {
                 FlashError("An error occured parsing the weather data.");
             }
-            //catch (Exception)
-            //{
-            //    FlashError("An unknown error occured trying to get the weather data.");
-            //}
+            catch (Exception)
+            {
+                FlashError("An unknown error occured trying to get the weather data.");
+            }
         }
 
         public void FlashError(string message)
@@ -249,7 +253,8 @@ namespace Weather
                 Hourly = hourlyForecast,
                 DescriptiveWind = descriptiveWind,
                 SymbolWindowIcon = symbolAsWindowIcon,
-                SymbolNotificationIcon = symbolAsNotificationIcon
+                SymbolNotificationIcon = symbolAsNotificationIcon,
+                Language = lang
             };
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
@@ -259,6 +264,7 @@ namespace Weather
                 descriptiveWind = sf.DescriptiveWind;
                 symbolAsWindowIcon = sf.SymbolWindowIcon;
                 symbolAsNotificationIcon = sf.SymbolNotificationIcon;
+                lang = sf.Language;
 
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
@@ -266,6 +272,7 @@ namespace Weather
                 Properties.Settings.Default.DescriptiveWind = descriptiveWind;
                 Properties.Settings.Default.SymbolWindowIcon = symbolAsWindowIcon;
                 Properties.Settings.Default.SymbolNotificationIcon = symbolAsNotificationIcon;
+                Properties.Settings.Default.Language = lang;
                 Properties.Settings.Default.Save();
                 RefreshData();
             }

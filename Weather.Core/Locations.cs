@@ -36,9 +36,14 @@ namespace Weather
                 Name, Country, Type);
         }
 
-        public string UrlSubsection()
+        public string UrlSubsection(ServiceLanguage lang)
         {
-            return Regex.Match(XmlUrl, querySlicingRegex).Groups[1].Value;
+            if (lang == ServiceLanguage.NorwegianNynorsk)
+                return Regex.Match(XmlUrlNynorsk, querySlicingRegex).Groups[1].Value;
+            else if (lang == ServiceLanguage.NorwegianBokmal)
+                return Regex.Match(XmlUrlBokmal, querySlicingRegex).Groups[1].Value;
+            else
+                return Regex.Match(XmlUrl, querySlicingRegex).Groups[1].Value;
         }
 
         // File for all locations:

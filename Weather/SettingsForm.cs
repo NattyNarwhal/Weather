@@ -16,8 +16,11 @@ namespace Weather
         {
             get
             {
-                return ((AvailableLocation)cityBox.SelectedItem)?.UrlSubsection()
-                    ?? cityBox.Text;
+                if (cityBox.SelectedItem != null)
+                    return ((AvailableLocation)cityBox.SelectedItem)
+                        ?.UrlSubsection(Language);
+                else
+                    return cityBox.Text;
             }
             set { cityBox.Text = value; }
         }
@@ -52,9 +55,19 @@ namespace Weather
             set { symbolAsWindowIconBox.Checked = value; }
         }
 
+        public ServiceLanguage Language
+        {
+            get { return (ServiceLanguage)languageBox.SelectedItem;  }
+            set { languageBox.SelectedItem = value; }
+        }
+
         public SettingsForm()
         {
             InitializeComponent();
+            // HACK: Enum.GetValues does not work well
+            languageBox.Items.Add(ServiceLanguage.English);
+            languageBox.Items.Add(ServiceLanguage.NorwegianBokmal);
+            languageBox.Items.Add(ServiceLanguage.NorwegianNynorsk);
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
