@@ -18,6 +18,8 @@ namespace Weather
         public bool useNotificationIcon;
         public bool hourlyForecast;
         public bool descriptiveWind;
+        public bool symbolAsWindowIcon;
+        public bool symbolAsNotificationIcon;
 
         public WeatherData data;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
@@ -30,6 +32,42 @@ namespace Weather
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
             hourlyForecast = Properties.Settings.Default.Hourly;
             descriptiveWind = Properties.Settings.Default.DescriptiveWind;
+            symbolAsNotificationIcon = Properties.Settings.Default.SymbolNotificationIcon;
+            symbolAsWindowIcon = Properties.Settings.Default.SymbolWindowIcon;
+        }
+
+        public Icon GetSymbolIcon(TabularTimeSymbol ts)
+        {
+            switch ((SymbolNumber)ts.Number)
+            {
+                case SymbolNumber.Sunny:
+                    return Properties.Resources.Clear;
+                case SymbolNumber.Fair:
+                case SymbolNumber.PartlyCloudy:
+                    return Properties.Resources.Partly;
+                case SymbolNumber.Cloudy:
+                case SymbolNumber.Fog:
+                    return Properties.Resources.Fair;
+                case SymbolNumber.Rain:
+                case SymbolNumber.Sleet:
+                case SymbolNumber.SleetShowers:
+                    return Properties.Resources.Rain;
+                case SymbolNumber.RainShowers:
+                case SymbolNumber.HeavyRain:
+                    return Properties.Resources.Showers;
+                case SymbolNumber.Snow:
+                case SymbolNumber.SnowShowers:
+                    return Properties.Resources.Snow;
+                case SymbolNumber.RainAndThunder:
+                case SymbolNumber.RainAndThunderAlternate:
+                case SymbolNumber.RainShowersWithThunder:
+                case SymbolNumber.SleetAndThunder:
+                case SymbolNumber.SleetShowersAndThunder:
+                case SymbolNumber.SnowAndThunder:
+                case SymbolNumber.SnowShowersAndThunder:
+                    return Properties.Resources.Thunder;
+                default: throw new Exception("The symbol number is unknown");
+            }
         }
 
         public void RefreshData()
@@ -120,6 +158,7 @@ namespace Weather
             if (t != null)
             {
                 //make icons
+                // TODO: refactor this out into sep func
                 using (var b = new Bitmap(16, 16))
                 {
                     using (var g = Graphics.FromImage(b))
@@ -136,52 +175,15 @@ namespace Weather
                         g.DrawString(val.ToString(), font, pos ?
                             Brushes.Black : Brushes.White, val > 9 ? 0 : 3, 1);
                     }
-                    // TODO: configure if to use the badge or symbol for each
-                    // place it is in use
                     icon = Icon.FromHandle(b.GetHicon());
                 }
 
-                switch ((SymbolNumber)t.Symbol.Number)
-                {
-                    case SymbolNumber.Sunny:
-                        Icon = Properties.Resources.Clear;
-                        break;
-                    case SymbolNumber.Fair:
-                    case SymbolNumber.PartlyCloudy:
-                        Icon = Properties.Resources.Partly;
-                        break;
-                    case SymbolNumber.Cloudy:   
-                    case SymbolNumber.Fog:
-                        Icon = Properties.Resources.Fair;
-                        break;
-                    case SymbolNumber.Rain:
-                    case SymbolNumber.Sleet:
-                    case SymbolNumber.SleetShowers:
-                        Icon = Properties.Resources.Rain;
-                        break;
-                    case SymbolNumber.RainShowers:
-                    case SymbolNumber.HeavyRain:
-                        Icon = Properties.Resources.Showers;
-                        break;
-                    case SymbolNumber.Snow:
-                    case SymbolNumber.SnowShowers:
-                        Icon = Properties.Resources.Snow;
-                        break;
-                    case SymbolNumber.RainAndThunder:
-                    case SymbolNumber.RainAndThunderAlternate:
-                    case SymbolNumber.RainShowersWithThunder:
-                    case SymbolNumber.SleetAndThunder:
-                    case SymbolNumber.SleetShowersAndThunder:
-                    case SymbolNumber.SnowAndThunder:
-                    case SymbolNumber.SnowShowersAndThunder:
-                        Icon = Properties.Resources.Thunder;
-                        break;
-                    default: break;
-                }
+                Icon = symbolAsWindowIcon ? GetSymbolIcon(t.Symbol) : icon;
 
                 if (useNotificationIcon)
                 {
-                    notifyIcon.Icon = icon;
+                    notifyIcon.Icon = symbolAsNotificationIcon ?
+                        GetSymbolIcon(t.Symbol) : icon;
                     notifyIcon.Text = String.Format("{1}, {0}\r\n{2}\r\n{3}",
                         t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(descriptiveWind));
                     notifyIcon.Visible = true;
@@ -192,7 +194,8 @@ namespace Weather
                     notifyIcon.Visible = false;
                     try
                     {
-                        TaskbarManager.Instance.SetOverlayIcon(icon,
+                        TaskbarManager.Instance.SetOverlayIcon(symbolAsWindowIcon ?
+                            icon : GetSymbolIcon(t.Symbol),
                             data.GetCurrentForecast().Temperature.ToString() ?? "");
                     }
                     catch (InvalidOperationException)
@@ -240,7 +243,9 @@ namespace Weather
                 WeatherLocation = weatherLocation,
                 UseNotificationIcon = useNotificationIcon,
                 Hourly = hourlyForecast,
-                DescriptiveWind = descriptiveWind
+                DescriptiveWind = descriptiveWind,
+                SymbolWindowIcon = symbolAsWindowIcon,
+                SymbolNotificationIcon = symbolAsNotificationIcon
             };
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
@@ -248,11 +253,15 @@ namespace Weather
                 useNotificationIcon = sf.UseNotificationIcon;
                 hourlyForecast = sf.Hourly;
                 descriptiveWind = sf.DescriptiveWind;
+                symbolAsWindowIcon = sf.SymbolWindowIcon;
+                symbolAsNotificationIcon = sf.SymbolNotificationIcon;
 
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
                 Properties.Settings.Default.Hourly = hourlyForecast;
                 Properties.Settings.Default.DescriptiveWind = descriptiveWind;
+                Properties.Settings.Default.SymbolWindowIcon = symbolAsWindowIcon;
+                Properties.Settings.Default.SymbolNotificationIcon = symbolAsNotificationIcon;
                 Properties.Settings.Default.Save();
                 RefreshData();
             }

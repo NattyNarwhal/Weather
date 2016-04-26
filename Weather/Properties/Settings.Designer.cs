@@ -70,5 +70,29 @@ namespace Weather.Properties {
                 this["DescriptiveWind"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SymbolNotificationIcon {
+            get {
+                return ((bool)(this["SymbolNotificationIcon"]));
+            }
+            set {
+                this["SymbolNotificationIcon"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SymbolWindowIcon {
+            get {
+                return ((bool)(this["SymbolWindowIcon"]));
+            }
+            set {
+                this["SymbolWindowIcon"] = value;
+            }
+        }
     }
 }

@@ -40,6 +40,18 @@ namespace Weather
             set { descriptiveWindBox.Checked = value; }
         }
 
+        public bool SymbolNotificationIcon
+        {
+            get { return symbolAsNotificationIconBox.Checked; }
+            set { symbolAsNotificationIconBox.Checked = value; }
+        }
+
+        public bool SymbolWindowIcon
+        {
+            get { return symbolAsWindowIconBox.Checked; }
+            set { symbolAsWindowIconBox.Checked = value; }
+        }
+
         public SettingsForm()
         {
             InitializeComponent();
