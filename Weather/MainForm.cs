@@ -22,12 +22,14 @@ namespace Weather
         public bool symbolAsNotificationIcon;
 
         public WeatherData data;
+        public Fetcher fetcher;
         private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
         private Icon icon; // used for both notify + taskbar overlay
 
         public MainForm()
         {
             InitializeComponent();
+            fetcher = new Fetcher();
             weatherLocation = Properties.Settings.Default.WeatherLocation;
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
             hourlyForecast = Properties.Settings.Default.Hourly;
@@ -74,7 +76,7 @@ namespace Weather
         {
             try
             {
-                using (var fs = Fetcher.GetStream(weatherLocation, hourlyForecast))
+                using (var fs = fetcher.GetStream(weatherLocation, hourlyForecast))
                 {
                     data = (WeatherData)xs.Deserialize(fs);
                 }
@@ -88,10 +90,10 @@ namespace Weather
             {
                 FlashError("An error occured parsing the weather data.");
             }
-            catch (Exception)
-            {
-                FlashError("An unknown error occured trying to get the weather data.");
-            }
+            //catch (Exception)
+            //{
+            //    FlashError("An unknown error occured trying to get the weather data.");
+            //}
         }
 
         public void FlashError(string message)

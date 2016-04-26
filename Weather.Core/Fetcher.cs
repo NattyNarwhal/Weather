@@ -4,50 +4,85 @@ using System.Net;
 
 namespace Weather
 {
-    public static class Fetcher
+    [Serializable]
+    public enum ServiceLanguage
     {
+        NorwegianNynorsk, NorwegianBokmal, English
+    }
+
+    public class Fetcher
+    {
+        private ServiceLanguage _language;
+
+        public ServiceLanguage Language
+        {
+            get
+            {
+                return _language;
+            }
+            set
+            {
+                _language = value;
+
+                // set the fetcher language in case
+                var jar = new CookieContainer();
+                if (value == ServiceLanguage.NorwegianBokmal)
+                    jar.Add(new Cookie("brp", "spr=nob", "/", "yr.no"));
+                else if (value == ServiceLanguage.NorwegianNynorsk)
+                    jar.Add(new Cookie("brp", "spr=nno", "/", "yr.no"));
+                else
+                    jar.Add(new Cookie("brp", "spr=eng", "/", "yr.no"));
+                wc.CookieContainer = jar;
+            }
+        }
+
         const string ua = "https://github.com/NattyNarwhal/Weather";
 
-        const string yrnoBase = "http://www.yr.no/place/{0}/{1}.xml";
-        const string normalForecast = "forecast";
-        const string hourlyForecast = "forecast_hour_by_hour";
+        const string yrnoBase = "http://www.yr.no/{0}/{1}/{2}.xml";
+        const string normalForecastEn = "forecast";
+        const string hourlyForecastEn = "forecast_hour_by_hour";
+        const string normalForecastNo = "varsel";
+        const string hourlyForecastNo = "varsel_time_for_time";
 
-        static CookieAwareWebClient wc = new CookieAwareWebClient();
+        CookieAwareWebClient wc;
 
-        static Fetcher()
+        public Fetcher()
         {
+            wc = new CookieAwareWebClient();
             wc.Headers.Add(HttpRequestHeader.UserAgent, ua);
-            var jar = new CookieContainer();
-            jar.Add(new Cookie("l", "en", "/", "yr.no"));
-            jar.Add(new Cookie("brp", "spr=eng", "/", "yr.no"));
-            wc.CookieContainer = jar;
+            Language = ServiceLanguage.English;
         }
 
-        static string GetUrl(string location, bool hourly)
+        static string GetPrefix(ServiceLanguage lang)
         {
-            return String.Format(yrnoBase, location,
-                hourly ? hourlyForecast : normalForecast);
+            if (lang == ServiceLanguage.NorwegianNynorsk)
+                return "stad";
+            else if (lang == ServiceLanguage.NorwegianBokmal)
+                return "sted";
+            else return "place";
         }
 
-        public static Stream GetStream(string location, bool hourly)
+        static string GetXmlName(bool hourly, ServiceLanguage lang)
+        {
+            if (hourly && lang == ServiceLanguage.English)
+                return hourlyForecastEn;
+            else if (!hourly && lang == ServiceLanguage.English)
+                return normalForecastEn;
+            else if (hourly && lang < ServiceLanguage.English)
+                return hourlyForecastNo;
+            else
+                return normalForecastNo;
+        }
+
+        string GetUrl(string location, bool hourly)
+        {
+            return String.Format(yrnoBase, GetPrefix(Language), location,
+                GetXmlName(hourly, Language));
+        }
+
+        public Stream GetStream(string location, bool hourly)
         {
             return wc.OpenRead(GetUrl(location, hourly));
-        }
-
-        public static bool LocationExists(string location)
-        {
-            var wr = (HttpWebRequest)WebRequest.Create(GetUrl(location, false));
-            wr.Method = "HEAD";
-            wr.UserAgent = ua;
-            try
-            {
-                return ((HttpWebResponse)wr.GetResponse()).StatusCode < HttpStatusCode.BadRequest;
-            }
-            catch (WebException)
-            {
-                // server-side codes get this
-                return false;
-            }
         }
     }
 }
