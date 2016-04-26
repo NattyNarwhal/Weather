@@ -196,9 +196,9 @@ namespace Weather
                     notifyIcon.Visible = false;
                     try
                     {
-                        TaskbarManager.Instance.SetOverlayIcon(symbolAsWindowIcon ?
-                            icon : GetSymbolIcon(t.Symbol),
-                            data.GetCurrentForecast().Temperature.ToString() ?? "");
+                        TaskbarManager.Instance.SetOverlayIcon(
+                            symbolAsWindowIcon ? icon : GetSymbolIcon(t.Symbol),
+                            String.Format("{0}, {1}", t.Temperature, t.Symbol.Name));
                     }
                     catch (InvalidOperationException)
                     {
