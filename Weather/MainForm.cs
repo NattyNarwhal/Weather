@@ -172,6 +172,8 @@ namespace Weather
 
                         g.FillEllipse(pos ? Brushes.White : Brushes.Black, r);
                         g.DrawEllipse(pos ? Pens.Black : Pens.White, r);
+
+                        // HACK: centering is one
                         g.DrawString(val.ToString(), font, pos ?
                             Brushes.Black : Brushes.White, val > 9 ? 0 : 3, 1);
                     }

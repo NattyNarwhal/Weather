@@ -185,6 +185,7 @@
             this.notificationEnableBox.TabIndex = 7;
             this.notificationEnableBox.Text = "Use the notification area icon";
             this.notificationEnableBox.UseVisualStyleBackColor = true;
+            this.notificationEnableBox.CheckedChanged += new System.EventHandler(this.notificationEnableBox_CheckedChanged);
             // 
             // notificationExplanation
             // 

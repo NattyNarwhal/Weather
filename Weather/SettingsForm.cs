@@ -64,5 +64,11 @@ namespace Weather
             cityBox.Items.AddRange(list);
             cityBox.SelectedItem = list.Where(x => x.XmlUrl.Contains(WeatherLocation)).FirstOrDefault();
         }
+
+        private void notificationEnableBox_CheckedChanged(object sender, EventArgs e)
+        {
+            symbolAsNotificationIconBox.Enabled = !notificationEnableBox.Checked;
+            tempAsNotificationIconBox.Enabled = !notificationEnableBox.Checked;
+        }
     }
 }
