@@ -9,7 +9,7 @@ namespace Weather
 {
     public class AvailableLocation
     {
-        const string querySlicingRegex = @"\/(?:place|sted|stad)\/(\w*\/\w*\/\w*)\/?";
+        const string querySlicingRegex = @"\/(?:place|sted|stad)\/((?:\w*\/)*\w*)\/.*\.xml";
 
         public string CountryCode { get; set; }
         public string NameNynorsk { get; set; }
