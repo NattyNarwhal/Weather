@@ -266,6 +266,8 @@ namespace Weather
                 symbolAsNotificationIcon = sf.SymbolNotificationIcon;
                 lang = sf.Language;
 
+                fetcher.Language = lang;
+
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
                 Properties.Settings.Default.Hourly = hourlyForecast;

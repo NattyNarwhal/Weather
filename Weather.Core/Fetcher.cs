@@ -26,6 +26,12 @@ namespace Weather
 
                 // set the fetcher language in case
                 var jar = new CookieContainer();
+
+                if (value == ServiceLanguage.English)
+                    jar.Add(new Cookie("lang", "en", "/", "yr.no"));
+                else
+                    jar.Add(new Cookie("lang", "no", "/", "yr.no"));
+
                 if (value == ServiceLanguage.NorwegianBokmal)
                     jar.Add(new Cookie("brp", "spr=nob", "/", "yr.no"));
                 else if (value == ServiceLanguage.NorwegianNynorsk)

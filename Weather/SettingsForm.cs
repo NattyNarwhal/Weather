@@ -75,7 +75,16 @@ namespace Weather
             var list = AvailableLocation.GetList().ToArray();
 
             cityBox.Items.AddRange(list);
-            cityBox.SelectedItem = list.Where(x => x.XmlUrl.Contains(WeatherLocation)).FirstOrDefault();
+
+            if (Language == ServiceLanguage.NorwegianBokmal)
+                cityBox.SelectedItem =
+                    list.Where(x => x.XmlUrlBokmal.Contains(WeatherLocation)).FirstOrDefault();
+            else if (Language == ServiceLanguage.NorwegianNynorsk)
+                cityBox.SelectedItem =
+                    list.Where(x => x.XmlUrlNynorsk.Contains(WeatherLocation)).FirstOrDefault();
+            else
+                cityBox.SelectedItem =
+                    list.Where(x => x.XmlUrl.Contains(WeatherLocation)).FirstOrDefault();
         }
 
         private void notificationEnableBox_CheckedChanged(object sender, EventArgs e)
