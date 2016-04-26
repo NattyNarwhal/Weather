@@ -14,18 +14,28 @@ namespace Weather
 {
     public partial class MainForm : Form
     {
-        public string weatherLocation;
-        public bool useNotificationIcon;
-        public bool hourlyForecast;
-        public bool descriptiveWind;
-        public bool symbolAsWindowIcon;
-        public bool symbolAsNotificationIcon;
-        public ServiceLanguage lang;
+        string weatherLocation;
+        bool useNotificationIcon;
+        bool hourlyForecast;
+        bool descriptiveWind;
+        bool symbolAsWindowIcon;
+        bool symbolAsNotificationIcon;
+        ServiceLanguage lang
+        {
+            get
+            {
+                return fetcher.Language;
+            }
+            set
+            {
+                fetcher.Language = value;
+            }
+        }
 
-        public WeatherData data;
-        public Fetcher fetcher;
-        private XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
-        private Icon icon; // used for both notify + taskbar overlay
+        WeatherData data;
+        Fetcher fetcher;
+        XmlSerializer xs = new XmlSerializer(typeof(WeatherData));
+        Icon icon; // used for both notify + taskbar overlay
 
         public MainForm()
         {
@@ -38,11 +48,9 @@ namespace Weather
             symbolAsNotificationIcon = Properties.Settings.Default.SymbolNotificationIcon;
             symbolAsWindowIcon = Properties.Settings.Default.SymbolWindowIcon;
             lang = Properties.Settings.Default.Language;
-
-            fetcher.Language = lang;
         }
 
-        public Icon GetSymbolIcon(TabularTimeSymbol ts)
+        static Icon GetSymbolIcon(TabularTimeSymbol ts)
         {
             switch ((SymbolNumber)ts.Number)
             {
@@ -76,7 +84,7 @@ namespace Weather
             }
         }
 
-        public void RefreshData()
+        void RefreshData()
         {
             try
             {
@@ -100,7 +108,7 @@ namespace Weather
             }
         }
 
-        public void FlashError(string message)
+        void FlashError(string message)
         {
             sunLabel.Text = message;
             if (notifyIcon.Visible)
@@ -108,7 +116,7 @@ namespace Weather
             Icon = Properties.Resources.Error;
         }
 
-        public void SyncState()
+        void SyncState()
         {
             var adjustedNow = DateTime.UtcNow.AddMinutes
                 (data.Location.TimeZone.UTCOffsetMinutes);
@@ -265,8 +273,6 @@ namespace Weather
                 symbolAsWindowIcon = sf.SymbolWindowIcon;
                 symbolAsNotificationIcon = sf.SymbolNotificationIcon;
                 lang = sf.Language;
-
-                fetcher.Language = lang;
 
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
