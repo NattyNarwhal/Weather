@@ -89,8 +89,8 @@ namespace Weather
 
         private void notificationEnableBox_CheckedChanged(object sender, EventArgs e)
         {
-            symbolAsNotificationIconBox.Enabled = !notificationEnableBox.Checked;
-            tempAsNotificationIconBox.Enabled = !notificationEnableBox.Checked;
+            symbolAsNotificationIconBox.Enabled = notificationEnableBox.Checked;
+            tempAsNotificationIconBox.Enabled = notificationEnableBox.Checked;
         }
     }
 }
