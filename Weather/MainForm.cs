@@ -92,7 +92,6 @@ namespace Weather
                 {
                     data = (WeatherData)xs.Deserialize(fs);
                 }
-                SyncState();
             }
             catch (WebException)
             {
@@ -225,6 +224,7 @@ namespace Weather
         private void refreshButton_Click(object sender, EventArgs e)
         {
             RefreshData();
+            SyncState();
         }
 
         private void overviewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -266,13 +266,18 @@ namespace Weather
             };
             if (sf.ShowDialog(this) == DialogResult.OK)
             {
-                weatherLocation = sf.WeatherLocation;
-                useNotificationIcon = sf.UseNotificationIcon;
-                hourlyForecast = sf.Hourly;
-                descriptiveWind = sf.DescriptiveWind;
-                symbolAsWindowIcon = sf.SymbolWindowIcon;
-                symbolAsNotificationIcon = sf.SymbolNotificationIcon;
-                lang = sf.Language;
+                bool needRefresh = false;
+                bool needSync = false;
+
+                if (weatherLocation != (weatherLocation = sf.WeatherLocation) ||
+                    lang != (lang = sf.Language) ||
+                    hourlyForecast != (hourlyForecast = sf.Hourly))
+                    needRefresh = true;
+                if (useNotificationIcon != (useNotificationIcon = sf.UseNotificationIcon) ||
+                    descriptiveWind != (descriptiveWind = sf.DescriptiveWind) ||
+                    symbolAsWindowIcon != (symbolAsWindowIcon = sf.SymbolWindowIcon) ||
+                    symbolAsNotificationIcon != (symbolAsNotificationIcon = sf.SymbolNotificationIcon))
+                    needSync = true;
 
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
@@ -282,7 +287,13 @@ namespace Weather
                 Properties.Settings.Default.SymbolNotificationIcon = symbolAsNotificationIcon;
                 Properties.Settings.Default.Language = lang;
                 Properties.Settings.Default.Save();
-                RefreshData();
+                if (needRefresh)
+                {
+                    RefreshData();
+                    needSync = true;
+                }
+                if (needSync)
+                    SyncState();
             }
         }
 
@@ -303,6 +314,7 @@ namespace Weather
         private void MainForm_Shown(object sender, EventArgs e)
         {
             RefreshData();
+            SyncState();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
