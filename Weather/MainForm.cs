@@ -203,19 +203,22 @@ namespace Weather
                         t.Symbol.Name, t.Temperature, t.Precipitation, t.Wind(descriptiveWind));
                     notifyIcon.Visible = true;
                 }
-                else if (!useNotificationIcon && Visible && TaskbarManager.IsPlatformSupported)
+                else if (!useNotificationIcon)
                 {
                     Visible = true;
                     notifyIcon.Visible = false;
-                    try
+                    if (TaskbarManager.IsPlatformSupported)
                     {
-                        TaskbarManager.Instance.SetOverlayIcon(
-                            symbolAsWindowIcon ? icon : GetSymbolIcon(t.Symbol),
-                            String.Format("{0}, {1}", t.Temperature, t.Symbol.Name));
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        // sometimes we can't get the tray icon...
+                        try
+                        {
+                            TaskbarManager.Instance.SetOverlayIcon(
+                                symbolAsWindowIcon ? icon : GetSymbolIcon(t.Symbol),
+                                String.Format("{0}, {1}", t.Temperature, t.Symbol.Name));
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            // sometimes we can't get the tray icon...
+                        }
                     }
                 }
             }
