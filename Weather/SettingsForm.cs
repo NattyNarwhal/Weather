@@ -57,17 +57,22 @@ namespace Weather
 
         public ServiceLanguage Language
         {
-            get { return (ServiceLanguage)languageBox.SelectedItem;  }
-            set { languageBox.SelectedItem = value; }
+            get
+            {
+                return ((ServiceLanguageWrapper)languageBox.SelectedItem).Language;
+            }
+            set
+            {
+                languageBox.SelectedItem =
+                    languageBox.Items.Cast<ServiceLanguageWrapper>()
+                    .Where(x => x.Language == value).First();
+            }
         }
 
         public SettingsForm()
         {
             InitializeComponent();
-            // HACK: Enum.GetValues does not work well
-            languageBox.Items.Add(ServiceLanguage.English);
-            languageBox.Items.Add(ServiceLanguage.NorwegianBokmal);
-            languageBox.Items.Add(ServiceLanguage.NorwegianNynorsk);
+            languageBox.Items.AddRange(ServiceLanguageWrapper.GetAllPossible());
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
