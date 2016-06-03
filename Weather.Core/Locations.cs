@@ -68,7 +68,7 @@ namespace Weather
         {
             foreach (var item in tabulatedData)
             {
-                if (string.IsNullOrWhiteSpace(item)) continue;
+                if (string.IsNullOrEmpty(item)) continue;
                 var subitem = item.Split('\t');
                 yield return new AvailableLocation()
                 {
