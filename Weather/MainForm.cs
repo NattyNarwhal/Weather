@@ -115,11 +115,12 @@ namespace Weather
             Icon = Properties.Resources.Error;
         }
 
-        ListViewItem CreateWeatherItem(TabularTime i)
+        ListViewItem CreateWeatherItem(TabularTime i, bool includeDateInString)
         {
             var lvi = new ListViewItem();
-            lvi.Text = string.Format("{0} - {1}",
-                i.From.ToShortTimeString(), i.To.ToShortTimeString());
+            lvi.Text = string.Format(includeDateInString ? "{2} {0} - {1}" : "{0} - {1}",
+                i.From.ToShortTimeString(), i.To.ToShortTimeString(),
+                i.From.ToShortDateString());
             lvi.SubItems.Add(i.Symbol.Name);
             lvi.SubItems.Add(i.Temperature.ToString());
             lvi.SubItems.Add(i.Precipitation.ToString());
@@ -165,7 +166,7 @@ namespace Weather
                     forecastBox.Groups.Add(lvg);
                     foreach (var i in g)
                     {
-                        var lvi = CreateWeatherItem(i);
+                        var lvi = CreateWeatherItem(i, false);
                         lvi.Group = lvg;
                         // sometimes the site doesn't include the period that
                         // the adjusted date fits in
@@ -179,7 +180,7 @@ namespace Weather
             else
             {
                 foreach (var i in data.Forecast.Times)
-                    forecastBox.Items.Add(CreateWeatherItem(i));
+                    forecastBox.Items.Add(CreateWeatherItem(i, true));
             }
 
             var t = data.GetCurrentForecast();
