@@ -115,6 +115,21 @@ namespace Weather
             Icon = Properties.Resources.Error;
         }
 
+        ListViewItem CreateWeatherItem(TabularTime i, bool includeDateInString)
+        {
+            var lvi = new ListViewItem();
+            lvi.Text = string.Format(includeDateInString ? "{2} {0} - {1}" : "{0} - {1}",
+                i.From.ToShortTimeString(), i.To.ToShortTimeString(),
+                i.From.ToShortDateString());
+            lvi.SubItems.Add(i.Symbol.Name);
+            lvi.SubItems.Add(i.Temperature.ToString());
+            lvi.SubItems.Add(i.Precipitation.ToString());
+            lvi.SubItems.Add(i.Wind(descriptiveWind));
+            lvi.SubItems.Add(i.Pressure.ToString());
+            lvi.Tag = i;
+            return lvi;
+        }
+
         void SyncState()
         {
             var adjustedNow = DateTime.UtcNow.AddMinutes
@@ -141,28 +156,38 @@ namespace Weather
             forecastBox.Items.Clear();
             forecastBox.Groups.Clear();
 
-            var grouped = data.Forecast.Times.GroupBy(x => x.From.Date);
-            foreach (var g in grouped)
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT &&
+                Environment.OSVersion.Version >= new Version(5, 1))
             {
-                var lvg = new ListViewGroup(g.Key.Date.ToShortDateString());
-                forecastBox.Groups.Add(lvg);
-                foreach (var i in g)
+                var grouped = data.Forecast.Times.GroupBy(x => x.From.Date);
+                foreach (var g in grouped)
                 {
-                    var lvi = new ListViewItem();
-                    lvi.Group = lvg;
+                    var lvg = new ListViewGroup(g.Key.Date.ToShortDateString());
+                    forecastBox.Groups.Add(lvg);
+                    foreach (var i in g)
+                    {
+                        var lvi = CreateWeatherItem(i, false);
+                        lvi.Group = lvg;
+                        // sometimes the site doesn't include the period that
+                        // the adjusted date fits in
+                        if (i.FitsInPeriod(adjustedNow) ||
+                            (i.From.Date == adjustedNow.Date && g.First() == i))
+                            lvi.Font = new Font(lvi.Font, FontStyle.Bold);
+                        forecastBox.Items.Add(lvi);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var i in data.Forecast.Times)
+                {
+                    var lvi = CreateWeatherItem(i, true);
                     // sometimes the site doesn't include the period that
                     // the adjusted date fits in
                     if (i.FitsInPeriod(adjustedNow) ||
-                        (i.From.Date == adjustedNow.Date && g.First() == i))
+                        (i.From.Date == adjustedNow.Date &&
+                        data.Forecast.Times.First() == i))
                         lvi.Font = new Font(lvi.Font, FontStyle.Bold);
-                    lvi.Text = string.Format("{0} - {1}",
-                        i.From.ToShortTimeString(), i.To.ToShortTimeString());
-                    lvi.SubItems.Add(i.Symbol.Name);
-                    lvi.SubItems.Add(i.Temperature.ToString());
-                    lvi.SubItems.Add(i.Precipitation.ToString());
-                    lvi.SubItems.Add(i.Wind(descriptiveWind));
-                    lvi.SubItems.Add(i.Pressure.ToString());
-                    lvi.Tag = i;
                     forecastBox.Items.Add(lvi);
                 }
             }
