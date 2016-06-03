@@ -180,7 +180,16 @@ namespace Weather
             else
             {
                 foreach (var i in data.Forecast.Times)
-                    forecastBox.Items.Add(CreateWeatherItem(i, true));
+                {
+                    var lvi = CreateWeatherItem(i, true);
+                    // sometimes the site doesn't include the period that
+                    // the adjusted date fits in
+                    if (i.FitsInPeriod(adjustedNow) ||
+                        (i.From.Date == adjustedNow.Date &&
+                        data.Forecast.Times.First() == i))
+                        lvi.Font = new Font(lvi.Font, FontStyle.Bold);
+                    forecastBox.Items.Add(lvi);
+                }
             }
 
             var t = data.GetCurrentForecast();
