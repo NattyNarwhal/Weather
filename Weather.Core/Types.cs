@@ -279,9 +279,27 @@ namespace Weather
         [XmlAttribute(AttributeName = "unit")]
         public string Unit { get; set; }
 
+        static string ShortUnit(string unit)
+        {
+            return unit == "celsius" ? "C" : "F";
+        }
+
+        string ShortUnit()
+        {
+            return ShortUnit(Unit);
+        }
+
         public override string ToString()
         {
-            return String.Format("{0} C", Value);
+            return String.Format("{0} {1}", Value, ShortUnit());
+        }
+
+        public Temperature AsFahrenheit()
+        {
+            var t = new Temperature();
+            t.Value = ((Value * 9) / 5) + 32;
+            t.Unit = "fahrenheit";
+            return t;
         }
     }
 

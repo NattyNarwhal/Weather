@@ -23,5 +23,8 @@
     <Setting Name="Language" Type="Weather.ServiceLanguage" Scope="User">
       <Value Profile="(Default)">English</Value>
     </Setting>
+    <Setting Name="ImperialUnits" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

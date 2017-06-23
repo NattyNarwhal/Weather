@@ -43,6 +43,12 @@ namespace Weather
             set { descriptiveWindBox.Checked = value; }
         }
 
+        public bool ImperialUnits
+        {
+            get { return imperialBox.Checked; }
+            set { imperialBox.Checked = value; }
+        }
+
         public bool SymbolNotificationIcon
         {
             get { return symbolAsNotificationIconBox.Checked; }

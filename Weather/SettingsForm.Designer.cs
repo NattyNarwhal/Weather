@@ -37,6 +37,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.locationPage = new System.Windows.Forms.TabPage();
             this.displayPage = new System.Windows.Forms.TabPage();
+            this.languageLabel = new System.Windows.Forms.Label();
+            this.languageBox = new System.Windows.Forms.ComboBox();
             this.iconPage = new System.Windows.Forms.TabPage();
             this.windowIconGroup = new System.Windows.Forms.GroupBox();
             this.symbolAsWindowIconBox = new System.Windows.Forms.RadioButton();
@@ -46,8 +48,7 @@
             this.tempAsNotificationIconBox = new System.Windows.Forms.RadioButton();
             this.notificationEnableBox = new System.Windows.Forms.CheckBox();
             this.notificationExplanation = new System.Windows.Forms.Label();
-            this.languageLabel = new System.Windows.Forms.Label();
-            this.languageBox = new System.Windows.Forms.ComboBox();
+            this.imperialBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.locationPage.SuspendLayout();
             this.displayPage.SuspendLayout();
@@ -109,10 +110,9 @@
             // descriptiveWindBox
             // 
             this.descriptiveWindBox.AutoSize = true;
-            this.descriptiveWindBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.descriptiveWindBox.Location = new System.Drawing.Point(6, 57);
             this.descriptiveWindBox.Name = "descriptiveWindBox";
-            this.descriptiveWindBox.Size = new System.Drawing.Size(107, 18);
+            this.descriptiveWindBox.Size = new System.Drawing.Size(101, 17);
             this.descriptiveWindBox.TabIndex = 4;
             this.descriptiveWindBox.Text = "Descripive wind";
             this.descriptiveWindBox.UseVisualStyleBackColor = true;
@@ -120,10 +120,9 @@
             // hourlyBox
             // 
             this.hourlyBox.AutoSize = true;
-            this.hourlyBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.hourlyBox.Location = new System.Drawing.Point(6, 33);
             this.hourlyBox.Name = "hourlyBox";
-            this.hourlyBox.Size = new System.Drawing.Size(103, 18);
+            this.hourlyBox.Size = new System.Drawing.Size(97, 17);
             this.hourlyBox.TabIndex = 3;
             this.hourlyBox.Text = "Hourly forecast";
             this.hourlyBox.UseVisualStyleBackColor = true;
@@ -156,6 +155,7 @@
             // 
             // displayPage
             // 
+            this.displayPage.Controls.Add(this.imperialBox);
             this.displayPage.Controls.Add(this.languageLabel);
             this.displayPage.Controls.Add(this.languageBox);
             this.displayPage.Controls.Add(this.descriptiveWindBox);
@@ -167,6 +167,27 @@
             this.displayPage.TabIndex = 1;
             this.displayPage.Text = "Display";
             this.displayPage.UseVisualStyleBackColor = true;
+            // 
+            // languageLabel
+            // 
+            this.languageLabel.AutoSize = true;
+            this.languageLabel.Location = new System.Drawing.Point(6, 9);
+            this.languageLabel.Name = "languageLabel";
+            this.languageLabel.Size = new System.Drawing.Size(58, 13);
+            this.languageLabel.TabIndex = 9;
+            this.languageLabel.Text = "Language:";
+            // 
+            // languageBox
+            // 
+            this.languageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.languageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.languageBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.languageBox.FormattingEnabled = true;
+            this.languageBox.Location = new System.Drawing.Point(70, 6);
+            this.languageBox.Name = "languageBox";
+            this.languageBox.Size = new System.Drawing.Size(238, 21);
+            this.languageBox.TabIndex = 2;
             // 
             // iconPage
             // 
@@ -195,10 +216,9 @@
             // symbolAsWindowIconBox
             // 
             this.symbolAsWindowIconBox.AutoSize = true;
-            this.symbolAsWindowIconBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.symbolAsWindowIconBox.Location = new System.Drawing.Point(6, 43);
             this.symbolAsWindowIconBox.Name = "symbolAsWindowIconBox";
-            this.symbolAsWindowIconBox.Size = new System.Drawing.Size(231, 18);
+            this.symbolAsWindowIconBox.Size = new System.Drawing.Size(225, 17);
             this.symbolAsWindowIconBox.TabIndex = 9;
             this.symbolAsWindowIconBox.Text = "Use symbol as icon, temperature as badge";
             this.symbolAsWindowIconBox.UseVisualStyleBackColor = true;
@@ -207,10 +227,9 @@
             // 
             this.tempAsWindowIconBox.AutoSize = true;
             this.tempAsWindowIconBox.Checked = true;
-            this.tempAsWindowIconBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.tempAsWindowIconBox.Location = new System.Drawing.Point(6, 19);
             this.tempAsWindowIconBox.Name = "tempAsWindowIconBox";
-            this.tempAsWindowIconBox.Size = new System.Drawing.Size(231, 18);
+            this.tempAsWindowIconBox.Size = new System.Drawing.Size(225, 17);
             this.tempAsWindowIconBox.TabIndex = 8;
             this.tempAsWindowIconBox.TabStop = true;
             this.tempAsWindowIconBox.Text = "Use temperature as icon, symbol as badge";
@@ -234,10 +253,9 @@
             // symbolAsNotificationIconBox
             // 
             this.symbolAsNotificationIconBox.AutoSize = true;
-            this.symbolAsNotificationIconBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.symbolAsNotificationIconBox.Location = new System.Drawing.Point(6, 96);
             this.symbolAsNotificationIconBox.Name = "symbolAsNotificationIconBox";
-            this.symbolAsNotificationIconBox.Size = new System.Drawing.Size(122, 18);
+            this.symbolAsNotificationIconBox.Size = new System.Drawing.Size(116, 17);
             this.symbolAsNotificationIconBox.TabIndex = 7;
             this.symbolAsNotificationIconBox.Text = "Use symbol as icon";
             this.symbolAsNotificationIconBox.UseVisualStyleBackColor = true;
@@ -246,10 +264,9 @@
             // 
             this.tempAsNotificationIconBox.AutoSize = true;
             this.tempAsNotificationIconBox.Checked = true;
-            this.tempAsNotificationIconBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.tempAsNotificationIconBox.Location = new System.Drawing.Point(6, 72);
             this.tempAsNotificationIconBox.Name = "tempAsNotificationIconBox";
-            this.tempAsNotificationIconBox.Size = new System.Drawing.Size(146, 18);
+            this.tempAsNotificationIconBox.Size = new System.Drawing.Size(140, 17);
             this.tempAsNotificationIconBox.TabIndex = 6;
             this.tempAsNotificationIconBox.TabStop = true;
             this.tempAsNotificationIconBox.Text = "Use temperature as icon";
@@ -258,10 +275,9 @@
             // notificationEnableBox
             // 
             this.notificationEnableBox.AutoSize = true;
-            this.notificationEnableBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.notificationEnableBox.Location = new System.Drawing.Point(6, 19);
             this.notificationEnableBox.Name = "notificationEnableBox";
-            this.notificationEnableBox.Size = new System.Drawing.Size(170, 18);
+            this.notificationEnableBox.Size = new System.Drawing.Size(164, 17);
             this.notificationEnableBox.TabIndex = 5;
             this.notificationEnableBox.Text = "Use the notification area icon";
             this.notificationEnableBox.UseVisualStyleBackColor = true;
@@ -278,26 +294,15 @@
             this.notificationExplanation.Text = "If this is disabled and you\'re using Windows 7 or newer, then the taskbar icon wi" +
     "ll have a badge instead.";
             // 
-            // languageLabel
+            // imperialBox
             // 
-            this.languageLabel.AutoSize = true;
-            this.languageLabel.Location = new System.Drawing.Point(6, 9);
-            this.languageLabel.Name = "languageLabel";
-            this.languageLabel.Size = new System.Drawing.Size(58, 13);
-            this.languageLabel.TabIndex = 9;
-            this.languageLabel.Text = "Language:";
-            // 
-            // languageBox
-            // 
-            this.languageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.languageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.languageBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.languageBox.FormattingEnabled = true;
-            this.languageBox.Location = new System.Drawing.Point(70, 6);
-            this.languageBox.Name = "languageBox";
-            this.languageBox.Size = new System.Drawing.Size(238, 21);
-            this.languageBox.TabIndex = 2;
+            this.imperialBox.AutoSize = true;
+            this.imperialBox.Location = new System.Drawing.Point(6, 81);
+            this.imperialBox.Name = "imperialBox";
+            this.imperialBox.Size = new System.Drawing.Size(87, 17);
+            this.imperialBox.TabIndex = 10;
+            this.imperialBox.Text = "Imperial units";
+            this.imperialBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -351,5 +356,6 @@
         private System.Windows.Forms.RadioButton tempAsNotificationIconBox;
         private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.ComboBox languageBox;
+        private System.Windows.Forms.CheckBox imperialBox;
     }
 }

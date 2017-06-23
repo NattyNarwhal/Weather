@@ -18,6 +18,7 @@ namespace Weather
         bool useNotificationIcon;
         bool hourlyForecast;
         bool descriptiveWind;
+        bool imperialUnits;
         bool symbolAsWindowIcon;
         bool symbolAsNotificationIcon;
         ServiceLanguage lang
@@ -45,6 +46,7 @@ namespace Weather
             useNotificationIcon = Properties.Settings.Default.UseNotificationIcon;
             hourlyForecast = Properties.Settings.Default.Hourly;
             descriptiveWind = Properties.Settings.Default.DescriptiveWind;
+            imperialUnits = Properties.Settings.Default.ImperialUnits;
             symbolAsNotificationIcon = Properties.Settings.Default.SymbolNotificationIcon;
             symbolAsWindowIcon = Properties.Settings.Default.SymbolWindowIcon;
             lang = Properties.Settings.Default.Language;
@@ -122,6 +124,8 @@ namespace Weather
                 i.From.ToShortTimeString(), i.To.ToShortTimeString(),
                 i.From.ToShortDateString());
             lvi.SubItems.Add(i.Symbol.Name);
+            if (imperialUnits && i.Temperature.Unit != "fahrenheit")
+                i.Temperature = i.Temperature.AsFahrenheit();
             lvi.SubItems.Add(i.Temperature.ToString());
             lvi.SubItems.Add(i.Precipitation.ToString());
             lvi.SubItems.Add(i.Wind(descriptiveWind));
@@ -195,6 +199,8 @@ namespace Weather
             var t = data.GetCurrentForecast();
             if (t != null)
             {
+                if (imperialUnits && t.Temperature.Unit != "fahrenheit")
+                    t.Temperature = t.Temperature.AsFahrenheit();
                 //make icons
                 // TODO: refactor this out into sep func
                 using (var b = new Bitmap(16, 16))
@@ -288,6 +294,7 @@ namespace Weather
                 UseNotificationIcon = useNotificationIcon,
                 Hourly = hourlyForecast,
                 DescriptiveWind = descriptiveWind,
+                ImperialUnits = imperialUnits,
                 SymbolWindowIcon = symbolAsWindowIcon,
                 SymbolNotificationIcon = symbolAsNotificationIcon,
                 Language = lang
@@ -299,7 +306,8 @@ namespace Weather
 
                 if (weatherLocation != (weatherLocation = sf.WeatherLocation) ||
                     lang != (lang = sf.Language) ||
-                    hourlyForecast != (hourlyForecast = sf.Hourly))
+                    hourlyForecast != (hourlyForecast = sf.Hourly) ||
+                    imperialUnits != (imperialUnits = sf.ImperialUnits))
                     needRefresh = true;
                 if (useNotificationIcon != (useNotificationIcon = sf.UseNotificationIcon) ||
                     descriptiveWind != (descriptiveWind = sf.DescriptiveWind) ||
@@ -311,6 +319,7 @@ namespace Weather
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
                 Properties.Settings.Default.Hourly = hourlyForecast;
                 Properties.Settings.Default.DescriptiveWind = descriptiveWind;
+                Properties.Settings.Default.ImperialUnits = imperialUnits;
                 Properties.Settings.Default.SymbolWindowIcon = symbolAsWindowIcon;
                 Properties.Settings.Default.SymbolNotificationIcon = symbolAsNotificationIcon;
                 Properties.Settings.Default.Language = lang;

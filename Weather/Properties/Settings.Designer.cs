@@ -106,5 +106,17 @@ namespace Weather.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ImperialUnits {
+            get {
+                return ((bool)(this["ImperialUnits"]));
+            }
+            set {
+                this["ImperialUnits"] = value;
+            }
+        }
     }
 }
