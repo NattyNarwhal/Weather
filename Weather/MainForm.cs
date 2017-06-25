@@ -21,6 +21,7 @@ namespace Weather
         bool imperialUnits;
         bool symbolAsWindowIcon;
         bool symbolAsNotificationIcon;
+        bool startHidden;
         ServiceLanguage lang
         {
             get
@@ -49,6 +50,7 @@ namespace Weather
             imperialUnits = Properties.Settings.Default.ImperialUnits;
             symbolAsNotificationIcon = Properties.Settings.Default.SymbolNotificationIcon;
             symbolAsWindowIcon = Properties.Settings.Default.SymbolWindowIcon;
+            startHidden = Properties.Settings.Default.StartHidden;
             lang = Properties.Settings.Default.Language;
         }
 
@@ -253,10 +255,6 @@ namespace Weather
                     }
                 }
             }
-
-            // prevent situation where you can hide the form and remove tray icon
-            if (!useNotificationIcon && !Visible)
-                Visible = true;
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -299,6 +297,7 @@ namespace Weather
                 Hourly = hourlyForecast,
                 DescriptiveWind = descriptiveWind,
                 ImperialUnits = imperialUnits,
+                StartHidden = startHidden,
                 SymbolWindowIcon = symbolAsWindowIcon,
                 SymbolNotificationIcon = symbolAsNotificationIcon,
                 Language = lang
@@ -319,11 +318,15 @@ namespace Weather
                     symbolAsNotificationIcon != (symbolAsNotificationIcon = sf.SymbolNotificationIcon))
                     needSync = true;
 
+                // we don't need to raise anything with this
+                startHidden = sf.StartHidden;
+
                 Properties.Settings.Default.WeatherLocation = weatherLocation;
                 Properties.Settings.Default.UseNotificationIcon = useNotificationIcon;
                 Properties.Settings.Default.Hourly = hourlyForecast;
                 Properties.Settings.Default.DescriptiveWind = descriptiveWind;
                 Properties.Settings.Default.ImperialUnits = imperialUnits;
+                Properties.Settings.Default.StartHidden = startHidden;
                 Properties.Settings.Default.SymbolWindowIcon = symbolAsWindowIcon;
                 Properties.Settings.Default.SymbolNotificationIcon = symbolAsNotificationIcon;
                 Properties.Settings.Default.Language = lang;
@@ -354,6 +357,11 @@ namespace Weather
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            if (startHidden && useNotificationIcon)
+                Visible = false;
+            else if (startHidden && !useNotificationIcon)
+                WindowState = FormWindowState.Minimized;
+
             RefreshData();
             SyncState();
         }

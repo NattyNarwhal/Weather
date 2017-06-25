@@ -37,6 +37,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.locationPage = new System.Windows.Forms.TabPage();
             this.displayPage = new System.Windows.Forms.TabPage();
+            this.imperialBox = new System.Windows.Forms.CheckBox();
             this.languageLabel = new System.Windows.Forms.Label();
             this.languageBox = new System.Windows.Forms.ComboBox();
             this.iconPage = new System.Windows.Forms.TabPage();
@@ -48,7 +49,7 @@
             this.tempAsNotificationIconBox = new System.Windows.Forms.RadioButton();
             this.notificationEnableBox = new System.Windows.Forms.CheckBox();
             this.notificationExplanation = new System.Windows.Forms.Label();
-            this.imperialBox = new System.Windows.Forms.CheckBox();
+            this.startHiddenBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.locationPage.SuspendLayout();
             this.displayPage.SuspendLayout();
@@ -155,6 +156,7 @@
             // 
             // displayPage
             // 
+            this.displayPage.Controls.Add(this.startHiddenBox);
             this.displayPage.Controls.Add(this.imperialBox);
             this.displayPage.Controls.Add(this.languageLabel);
             this.displayPage.Controls.Add(this.languageBox);
@@ -167,6 +169,16 @@
             this.displayPage.TabIndex = 1;
             this.displayPage.Text = "Display";
             this.displayPage.UseVisualStyleBackColor = true;
+            // 
+            // imperialBox
+            // 
+            this.imperialBox.AutoSize = true;
+            this.imperialBox.Location = new System.Drawing.Point(6, 81);
+            this.imperialBox.Name = "imperialBox";
+            this.imperialBox.Size = new System.Drawing.Size(87, 17);
+            this.imperialBox.TabIndex = 10;
+            this.imperialBox.Text = "Imperial units";
+            this.imperialBox.UseVisualStyleBackColor = true;
             // 
             // languageLabel
             // 
@@ -294,15 +306,15 @@
             this.notificationExplanation.Text = "If this is disabled and you\'re using Windows 7 or newer, then the taskbar icon wi" +
     "ll have a badge instead.";
             // 
-            // imperialBox
+            // startHiddenBox
             // 
-            this.imperialBox.AutoSize = true;
-            this.imperialBox.Location = new System.Drawing.Point(6, 81);
-            this.imperialBox.Name = "imperialBox";
-            this.imperialBox.Size = new System.Drawing.Size(87, 17);
-            this.imperialBox.TabIndex = 10;
-            this.imperialBox.Text = "Imperial units";
-            this.imperialBox.UseVisualStyleBackColor = true;
+            this.startHiddenBox.AutoSize = true;
+            this.startHiddenBox.Location = new System.Drawing.Point(6, 104);
+            this.startHiddenBox.Name = "startHiddenBox";
+            this.startHiddenBox.Size = new System.Drawing.Size(83, 17);
+            this.startHiddenBox.TabIndex = 11;
+            this.startHiddenBox.Text = "Start hidden";
+            this.startHiddenBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -357,5 +369,6 @@
         private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.ComboBox languageBox;
         private System.Windows.Forms.CheckBox imperialBox;
+        private System.Windows.Forms.CheckBox startHiddenBox;
     }
 }

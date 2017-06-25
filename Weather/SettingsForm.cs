@@ -49,6 +49,12 @@ namespace Weather
             set { imperialBox.Checked = value; }
         }
 
+        public bool StartHidden
+        {
+            get { return startHiddenBox.Checked; }
+            set { startHiddenBox.Checked = value; }
+        }
+
         public bool SymbolNotificationIcon
         {
             get { return symbolAsNotificationIconBox.Checked; }
