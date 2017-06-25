@@ -375,5 +375,10 @@ namespace Weather
             if (sb.Length > 0)
                 Clipboard.SetText(sb.ToString());
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

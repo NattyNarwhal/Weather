@@ -58,6 +58,7 @@
             this.settingsButton = new System.Windows.Forms.Button();
             this.updatePollTimer = new System.Windows.Forms.Timer(this.components);
             this.creditLink = new System.Windows.Forms.LinkLabel();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
@@ -196,7 +197,6 @@
             this.longTermToolStripMenuItem,
             this.radarToolStripMenuItem});
             this.linksMenu.Name = "linksMenu";
-            this.linksMenu.OwnerItem = this.linksToolStripMenuItem;
             this.linksMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.linksMenu.Size = new System.Drawing.Size(132, 92);
             // 
@@ -232,7 +232,7 @@
             // 
             this.linksToolStripMenuItem.DropDown = this.linksMenu;
             this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
-            this.linksToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.linksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.linksToolStripMenuItem.Text = "&Links";
             // 
             // notifyIcon
@@ -244,13 +244,14 @@
             // notifyIconMenu
             // 
             this.notifyIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.linksToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.refreshToolStripMenuItem,
             this.settingsToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.linksToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.notifyIconMenu.Name = "notifyIconMenu";
             this.notifyIconMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.notifyIconMenu.Size = new System.Drawing.Size(117, 76);
+            this.notifyIconMenu.Size = new System.Drawing.Size(153, 120);
             // 
             // refreshToolStripMenuItem
             // 
@@ -298,6 +299,13 @@
             this.creditLink.TabIndex = 6;
             this.creditLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.creditLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.creditLink_LinkClicked);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -354,6 +362,7 @@
         private System.Windows.Forms.LinkLabel creditLink;
         private System.Windows.Forms.ContextMenuStrip listMenu;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
