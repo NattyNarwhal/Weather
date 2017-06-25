@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.refreshButton = new System.Windows.Forms.Button();
             this.forecastBox = new System.Windows.Forms.ListView();
             this.periodCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.conditionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,38 +42,28 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lastUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.nextUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.linksButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.linksMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.overviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hourlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.longTermToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.radarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.settingsButton = new System.Windows.Forms.Button();
             this.updatePollTimer = new System.Windows.Forms.Timer(this.components);
             this.creditLink = new System.Windows.Forms.LinkLabel();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.weatherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.linksMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // refreshButton
-            // 
-            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(462, 12);
-            this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(75, 23);
-            this.refreshButton.TabIndex = 0;
-            this.refreshButton.Text = "&Refresh";
-            this.refreshButton.UseVisualStyleBackColor = true;
-            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // forecastBox
             // 
@@ -90,10 +79,10 @@
             this.pressureCol});
             this.forecastBox.ContextMenuStrip = this.listMenu;
             this.forecastBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.forecastBox.Location = new System.Drawing.Point(12, 41);
+            this.forecastBox.Location = new System.Drawing.Point(12, 50);
             this.forecastBox.Name = "forecastBox";
             this.forecastBox.ShowItemToolTips = true;
-            this.forecastBox.Size = new System.Drawing.Size(525, 261);
+            this.forecastBox.Size = new System.Drawing.Size(525, 252);
             this.forecastBox.TabIndex = 0;
             this.forecastBox.UseCompatibleStateImageBehavior = false;
             this.forecastBox.View = System.Windows.Forms.View.Details;
@@ -147,9 +136,9 @@
             // 
             this.sunLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sunLabel.Location = new System.Drawing.Point(9, 12);
+            this.sunLabel.Location = new System.Drawing.Point(12, 24);
             this.sunLabel.Name = "sunLabel";
-            this.sunLabel.Size = new System.Drawing.Size(366, 23);
+            this.sunLabel.Size = new System.Drawing.Size(525, 23);
             this.sunLabel.TabIndex = 3;
             this.sunLabel.Text = " ";
             this.sunLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -158,8 +147,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lastUpdateLabel,
-            this.nextUpdateLabel,
-            this.linksButton});
+            this.nextUpdateLabel});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.statusStrip1.Location = new System.Drawing.Point(0, 328);
             this.statusStrip1.Name = "statusStrip1";
@@ -178,16 +166,6 @@
             this.nextUpdateLabel.Name = "nextUpdateLabel";
             this.nextUpdateLabel.Size = new System.Drawing.Size(72, 17);
             this.nextUpdateLabel.Text = "Next Update";
-            // 
-            // linksButton
-            // 
-            this.linksButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.linksButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.linksButton.DropDown = this.linksMenu;
-            this.linksButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.linksButton.Name = "linksButton";
-            this.linksButton.Size = new System.Drawing.Size(47, 20);
-            this.linksButton.Text = "Links";
             // 
             // linksMenu
             // 
@@ -228,13 +206,6 @@
             this.radarToolStripMenuItem.Text = "&Radar";
             this.radarToolStripMenuItem.Click += new System.EventHandler(this.radarToolStripMenuItem_Click);
             // 
-            // linksToolStripMenuItem
-            // 
-            this.linksToolStripMenuItem.DropDown = this.linksMenu;
-            this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
-            this.linksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.linksToolStripMenuItem.Text = "&Links";
-            // 
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
@@ -244,14 +215,13 @@
             // notifyIconMenu
             // 
             this.notifyIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.linksToolStripMenuItem,
-            this.toolStripMenuItem2,
             this.refreshToolStripMenuItem,
             this.settingsToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.notifyIconMenu.Name = "notifyIconMenu";
             this.notifyIconMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.notifyIconMenu.Size = new System.Drawing.Size(153, 120);
+            this.notifyIconMenu.Size = new System.Drawing.Size(117, 76);
             // 
             // refreshToolStripMenuItem
             // 
@@ -271,17 +241,6 @@
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(113, 6);
-            // 
-            // settingsButton
-            // 
-            this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.settingsButton.Location = new System.Drawing.Point(381, 12);
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(75, 23);
-            this.settingsButton.TabIndex = 5;
-            this.settingsButton.Text = "&Settings";
-            this.settingsButton.UseVisualStyleBackColor = true;
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // updatePollTimer
             // 
@@ -307,17 +266,43 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.weatherToolStripMenuItem,
+            this.linksToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(549, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // weatherToolStripMenuItem
+            // 
+            this.weatherToolStripMenuItem.DropDown = this.notifyIconMenu;
+            this.weatherToolStripMenuItem.Name = "weatherToolStripMenuItem";
+            this.weatherToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.weatherToolStripMenuItem.Text = "&Weather";
+            // 
+            // linksToolStripMenuItem
+            // 
+            this.linksToolStripMenuItem.DropDown = this.linksMenu;
+            this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
+            this.linksToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.linksToolStripMenuItem.Text = "&Links";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 350);
             this.Controls.Add(this.creditLink);
-            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.forecastBox);
             this.Controls.Add(this.sunLabel);
-            this.Controls.Add(this.refreshButton);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Weather";
             this.Shown += new System.EventHandler(this.MainForm_Shown);
@@ -326,14 +311,14 @@
             this.statusStrip1.PerformLayout();
             this.linksMenu.ResumeLayout(false);
             this.notifyIconMenu.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.ListView forecastBox;
         private System.Windows.Forms.ColumnHeader periodCol;
         private System.Windows.Forms.ColumnHeader tempCol;
@@ -345,24 +330,24 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lastUpdateLabel;
         private System.Windows.Forms.ToolStripStatusLabel nextUpdateLabel;
-        private System.Windows.Forms.ToolStripDropDownButton linksButton;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip notifyIconMenu;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem linksToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip linksMenu;
         private System.Windows.Forms.ToolStripMenuItem overviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hourlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem longTermToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem radarToolStripMenuItem;
-        private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Timer updatePollTimer;
         private System.Windows.Forms.LinkLabel creditLink;
         private System.Windows.Forms.ContextMenuStrip listMenu;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem weatherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linksToolStripMenuItem;
     }
 }
 
