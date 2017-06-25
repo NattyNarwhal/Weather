@@ -122,7 +122,6 @@
             this.listMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem});
             this.listMenu.Name = "listMenu";
-            this.listMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.listMenu.Size = new System.Drawing.Size(103, 26);
             // 
             // copyToolStripMenuItem
