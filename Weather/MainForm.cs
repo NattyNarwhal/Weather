@@ -55,6 +55,9 @@ namespace Weather
             symbolAsWindowIcon = Properties.Settings.Default.SymbolWindowIcon;
             startHidden = Properties.Settings.Default.StartHidden;
             lang = Properties.Settings.Default.Language;
+
+            if (startHidden && !useNotificationIcon)
+                WindowState = FormWindowState.Minimized;
         }
 
         static Icon GetSymbolIcon(TabularTimeSymbol ts)
@@ -361,8 +364,6 @@ namespace Weather
         {
             if (startHidden && useNotificationIcon)
                 Visible = false;
-            else if (startHidden && !useNotificationIcon)
-                WindowState = FormWindowState.Minimized;
 
             RefreshData();
             SyncState();
