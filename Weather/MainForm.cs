@@ -253,6 +253,10 @@ namespace Weather
                     }
                 }
             }
+
+            // prevent situation where you can hide the form and remove tray icon
+            if (!useNotificationIcon && !Visible)
+                Visible = true;
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
