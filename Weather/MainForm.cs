@@ -14,6 +14,9 @@ namespace Weather
 {
     public partial class MainForm : Form
     {
+        bool lvGroupsSupported = Environment.OSVersion.Platform == PlatformID.Win32NT &&
+            Environment.OSVersion.Version >= new Version(5, 1);
+
         string weatherLocation;
         bool useNotificationIcon;
         bool hourlyForecast;
@@ -162,8 +165,7 @@ namespace Weather
             forecastBox.Items.Clear();
             forecastBox.Groups.Clear();
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                Environment.OSVersion.Version >= new Version(5, 1))
+            if (lvGroupsSupported)
             {
                 var grouped = data.Forecast.Times.GroupBy(x => x.From.Date);
                 foreach (var g in grouped)
@@ -368,13 +370,29 @@ namespace Weather
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var grouped = forecastBox.SelectedItems
-                .Cast<ListViewItem>().GroupBy(x => x.Group);
             var sb = new StringBuilder();
-            foreach (var g in grouped)
+            if (lvGroupsSupported)
             {
-                sb.AppendLine("# " + g.Key.Header);
-                foreach(var i in g)
+                var grouped = forecastBox.SelectedItems
+                    .Cast<ListViewItem>().GroupBy(x => x.Group);
+                foreach (var g in grouped)
+                {
+                    sb.AppendLine("# " + g.Key.Header);
+                    foreach (var i in g)
+                    {
+                        var t = (TabularTime)i.Tag;
+                        sb.AppendLine(String.Format("{0}-{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
+                            t.From.ToShortTimeString(), t.To.ToShortTimeString(),
+                            t.Symbol.Name, t.Temperature.ToString(),
+                            t.Precipitation.ToString(), t.Wind(descriptiveWind),
+                            t.Pressure.ToString()));
+                    }
+                }
+            }
+            else
+            {
+                var s = forecastBox.SelectedItems.Cast<ListViewItem>();
+                foreach (var i in s)
                 {
                     var t = (TabularTime)i.Tag;
                     sb.AppendLine(String.Format("{0}-{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
