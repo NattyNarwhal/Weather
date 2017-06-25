@@ -99,12 +99,12 @@
             // 
             // tempCol
             // 
-            this.tempCol.Text = "Temp.";
+            this.tempCol.Text = "Temperature";
             this.tempCol.Width = 50;
             // 
             // precipCol
             // 
-            this.precipCol.Text = "Precip.";
+            this.precipCol.Text = "Precipitation";
             this.precipCol.Width = 50;
             // 
             // windCol
@@ -219,8 +219,7 @@
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.notifyIconMenu.Name = "notifyIconMenu";
-            this.notifyIconMenu.OwnerItem = this.weatherToolStripMenuItem;
-            this.notifyIconMenu.Size = new System.Drawing.Size(155, 98);
+            this.notifyIconMenu.Size = new System.Drawing.Size(155, 76);
             // 
             // refreshToolStripMenuItem
             // 
